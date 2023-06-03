@@ -2,6 +2,7 @@
 <p>Welcome Ironhacker!</p> --}}
 <h1 class="homepage-heading">The Name of The App</h1>
 
+<div class="homepage-search-container">
 <h2>Kanji Search</h2>
 
 <form action="/" method="GET">
@@ -14,11 +15,14 @@
     {{#if result.length}}
       <ul>
         {{#each result}}
-          <li>{{this.kanji.character}}</li>
+           <li><a class="kanji-link" href="/{{this.kanji.character}}/details">{{this.kanji.character}}</a></li>
+         
         {{/each}}
       </ul>
     {{else}}
       <p>No results found.</p>
     {{/if}}
   {{/if}}
+
+  </div>
 

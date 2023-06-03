@@ -33,11 +33,11 @@ router.get('/', async (req, res, next) => {
 });
 
 // Kanji Details Route
-router.get('/:theID', async (req, res, next) => {
+router.get('/:character/details', async (req, res, next) => {
   try {
     const options = {
       method: 'GET',
-      url: `https://kanjialive-api.p.rapidapi.com/api/public/kanji/${req.params.theID}`,
+      url: `https://kanjialive-api.p.rapidapi.com/api/public/kanji/${req.params.character}`,
       headers: {
         'X-RapidAPI-Key': process.env.APIKEY,
         'X-RapidAPI-Host': 'kanjialive-api.p.rapidapi.com'
@@ -45,7 +45,8 @@ router.get('/:theID', async (req, res, next) => {
     }
 
     const response = await axios.request(options);
-    const result = response.data;
+    const resultDetails = response.data;
+    res.render('kanjiAPI/details-kanji', { resultDetails });
   }catch (error) {
       next(error);
     }

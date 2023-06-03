@@ -44,5 +44,69 @@ color: #000;
 .homepage-heading {
   text-align: center;
   margin-top: 3rem;
+  margin-bottom: 4rem;
   font-size: 5rem;
+}
+
+.homepage-search-container {
+  width: 50%;
+  height: 45rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  background-color: #94ab6f;
+  border-radius: 0.9rem;
+  box-shadow: 0 5px 15px 9px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem;
+
+}
+
+.homepage-search-container h2 {
+font-size: 3rem;
+}
+
+.homepage-search-container form {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+.homepage-search-container form input {
+  width: 50%;
+  padding: 1rem;
+  font-size: 2rem;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: #faf7f0;
+  color: #8B0000;
+  font-weight: 500;
+}
+
+.homepage-search-container form button {
+  font-size: 1.6rem;
+  padding: 1rem 1.6rem;
+  border-radius: 1rem;
+  border: none;
+  background-color: #faf7f0;
+  color: #000;
+  font-weight: 700;
+}
+
+.homepage-search-container ul li, .homepage-search-container ul li {
+  list-style: none;
+  font-size: 5.4rem;
+  margin-bottom: 1.8rem;
+  text-decoration: none;
+}
+
+.kanji-link:link, .kanji-link:active {
+color: #000;
+text-decoration: none;
+}
+
+.kanji-link:hover, .kanji-link:visited {
+  color: #000;
 }
