@@ -1,0 +1,48 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+body {
+  background-color: #faf7f0;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+/* Home Page */
+
+.nav-bar {
+  background-color: #8B0000 ;
+  padding: 2rem 0 2.2rem 2.8rem;
+  font-size: 2rem;
+  display: flex;
+  gap: 3.4rem;
+  box-shadow: 0 10px 10px 10px rgba(0, 0, 0, 0.07) ;
+}
+
+.nav-bar a:link, .nav-bar a:active {
+  display: block;
+  position: relative;
+  color: #000;
+  text-decoration: none;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: all 0.5s;
+}
+
+.nav-bar a:hover {
+transform: scale(1.25);
+} 
+
+.nav-bar a:visited {
+color: #000;
+}
+
+.homepage-heading {
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 5rem;
+}
