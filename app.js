@@ -15,6 +15,7 @@ const hbs = require("hbs");
 
 const app = express();
 
+require('./config/session.config')(app);
 
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app);
@@ -25,6 +26,12 @@ const projectName = "Module2-FinalProject";
 
 
 app.locals.appTitle = `${capitalize(projectName)} created with IronLauncher`;
+
+app.use((req, res, next)=>{
+  res.locals.theUserObject = req.session.currentUser || null;
+
+  next();
+})
 
 
 // 👇 Start handling routes here
