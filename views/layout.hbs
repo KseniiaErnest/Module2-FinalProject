@@ -16,9 +16,21 @@
 
       <nav class="nav-bar">
          <a href="/">Homepage</a>
-         <a href="#">Sign up</a>
+         <a href="/user/signup">Sign up</a>
          <a href="#">Log in</a>
       </nav>
+
+      {{#if errorMessage}}
+      <div style="background-color:red">
+         {{errorMessage}}
+      </div>
+      {{/if}}
+
+      {{#if successMessage}}
+      <div style="background-color:green">
+         {{successMessage}}
+      </div>
+      {{/if}}
 
       {{{body}}}
 
