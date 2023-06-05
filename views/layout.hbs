@@ -15,12 +15,32 @@
    <body>
 
       <nav class="nav-bar">
+
          <a href="/">Homepage</a>
+
+         {{#if theUserObject}}
+         <a href="/user/signup" style="display:none">Sign up</a>
+         {{else}}
          <a href="/user/signup">Sign up</a>
-         <a href="/user/login">Log in</a>
+         {{/if}}
+
+
+         {{#if theUserObject}}
          <form action="/user/logout" method="POST" class="logout-container">
             <button>Log out</button>
          </form>
+         {{else}}
+          <a href="/user/login">Log in</a>
+         {{/if}}
+
+         {{#if theUserObject}}
+         <a href="/user/userprofile">Profile</a>
+         {{/if}}
+
+         {{#if theUserObject}}
+         <h2>よこそ、{{theUserObject.username}}</h2>
+         {{/if}}
+
       </nav>
 
       {{#if errorMessage}}

@@ -99,7 +99,7 @@ res.redirect('/');
 });
 
 // User profile page GET route
-router.get('/userprofile', isLoggedIn, (req, res, next) => {
+router.get('/userprofile', (req, res, next) => {
   res.render('users/user-profile');
 })
 
