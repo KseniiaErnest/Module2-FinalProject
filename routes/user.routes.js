@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 
-
 const User = require('../models/User.model');
 
 // USER Signup GET and POST routes
@@ -19,16 +18,36 @@ const username = req.body.username;
 const email = req.body.email;
 const password = req.body.password;
 
+// All fields are mandatory
+if (!username || !email || !password) {
+  res.render('users/signup', {errorMessage: "All fields are mandatory. Please provide your username, email and password."});
+  return;
+};
+
+const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+if (!regex.test(password)) {
+  req.flash('error', 'Password must contain lowercase, capital, numerals, and special characters');
+  res.redirect('/user/signup');
+  return;
+};
+
+
 bcryptjs
     .genSalt(saltRounds)
     .then(salt => bcryptjs.hash(password, salt))
     .then(hashedPassword => {
-      return User.create({ username, email, password: hashedPassword });
+      /*return*/ User.create({ username, email, password: hashedPassword });
     })
-    .then(userFromDB => {
+    .then(() => {
+      req.flash("success", "Sign-up was successful");
       res.redirect('/user/userprofile');
     })
-    .catch(error => next(error));
+    .catch((error)  => {
+if (error instanceof mongoose.Error) {
+  req.flash("error", error.message);
+  res.redirect('/signup');
+}
+    })
 });
 
 // LOGIN GET route
@@ -55,20 +74,17 @@ router.post('/login', (req, res, next) => {
   User.findOne({username: username})
   .then(gotUser => {
     if (!gotUser) {
-      res.render('users/login', {
-        errorMessage: 'Username is not registered. Try with other username.'
-      });
+      req.flash('error', 'Username Not Found');
+      res.redirect('/user/login');
       return;
-    }
-
-    else if (bcryptjs.compareSync(password, gotUser.password)) {
+    } else if (bcryptjs.compareSync(password, gotUser.password)) {
       //Save the user in session
       req.session.currentUser = gotUser;
-      console.log('CURRENT USER =====> ', req.session.currentUser)
+      req.flash('success', 'Successfully Logged In');
       res.redirect('/user/userprofile');
-
     } else {
-      res.render('users/login', {errorMessage: 'Incorrect password.' });
+      req.flash('error', "Password do not match");
+      res.redirect('/user/login');
     }
   })
   .catch(error => next(error));

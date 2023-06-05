@@ -1,27 +1,24 @@
 <div class="signup-container">
-<h1>Signup</h1>
+<h1>Sign up</h1>
 
-<form action="/user/signup" method="POST">
+<form action="/user/signup" method="POST" id="form-signup">
 <label>
-  Username
-  <input type="text" name="username" id="" placeholder="Please, fill in preffered username">
+  <input type="text" name="username" placeholder="Enter name" class="input-signup">
 </label>
 
 <label>
-  Email
-  <input type="email" name="email" id="" placeholder="Please, fill in valid email">
+  <input type="email" name="email"  placeholder="Enter e-mail" class="input-signup">
 </label>
 
 <label>
-  Password
-  <input type="password" name="password" id="" placeholder="Please, create your password">
+  <input type="password" name="password" placeholder="Enter password" class="input-signup">
 </label>
 
-<button type="submit">Create an account</button>
+<button class="btn-singup" type="submit">Create an account</button>
 
-{{#if errorMessage}}
+{{!-- {{#if errorMessage}}
     <p class="error">{{errorMessage}}</p>
-  {{/if}}
+  {{/if}} --}}
 
 
 </form>

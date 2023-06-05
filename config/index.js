@@ -18,7 +18,7 @@ const favicon = require("serve-favicon");
 const path = require("path");
 
 // connect-flash
-const flash = require('connect-flash');
+var flash = require('connect-flash');
 
 // Middleware configuration
 module.exports = (app) => {

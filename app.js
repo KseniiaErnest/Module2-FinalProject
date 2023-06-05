@@ -29,6 +29,8 @@ app.locals.appTitle = `${capitalize(projectName)} created with IronLauncher`;
 
 app.use((req, res, next)=>{
   res.locals.theUserObject = req.session.currentUser || null;
+  res.locals.errorMessage = req.flash('error');
+  res.locals.successMessage = req.flash("success");
 
   next();
 })
