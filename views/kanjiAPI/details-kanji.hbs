@@ -1,13 +1,18 @@
+<div class="kanji-details-container">
 <h1>{{resultDetails.kanji.character}}</h1>
 
-<h3>Meaning</h3>
-<p>{{resultDetails.kanji.meaning.english}}</p>
+<div class="kanji-box">
+  <span><h3>Meaning</h3>
+<p>{{resultDetails.kanji.meaning.english}}</p></span>
 
-<h3>Onyomi</h3>
-<p>{{resultDetails.kanji.onyomi.katakana}}</p>
+<span><h3>Onyomi</h3>
+<p>{{resultDetails.kanji.onyomi.katakana}}</p></span>
 
-<h3>Kunyomi</h3>
-<p>{{resultDetails.kanji.kunyomi.hiragana}}</p>
+<span><h3>Kunyomi</h3>
+<p>{{resultDetails.kanji.kunyomi.hiragana}}</p></span>
+
+
+</div>
 
 <h3>Strokes</h3>
 <p>{{resultDetails.kanji.strokes.count}}</p>
@@ -15,8 +20,6 @@
 <h3>Grade</h3>
 <p>{{resultDetails.references.grade}}</p>
 
-<h3>Hint</h3>
-<p>{{resultDetails.hint_group}}</p>
 
 <h3>Examples</h3>
 <p>{{resultDetails.kanji.meaning.english}}</p>
@@ -24,7 +27,11 @@
 
 <h3><a href="{{resultDetails.luminous}}" target="_blank">More information</a></h3>
 
+<div>
 <h3>Strokes order</h3>
 {{#each resultDetails.kanji.strokes.images}}
 <img src="{{this}}" alt="" width="100px">
 {{/each}}
+</div>
+
+</div>

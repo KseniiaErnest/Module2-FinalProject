@@ -6,6 +6,7 @@ const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 
 const User = require('../models/User.model');
+const isLoggedIn = require('../middleware/isLoggedIn');
 
 // USER Signup GET and POST routes
 router.get('/signup', (req, res, next) => {
@@ -92,13 +93,13 @@ router.post('/login', (req, res, next) => {
 });
 
 // LOGOUT POST route
-router.post('/logout', (req, res, next) => {
+router.post('/logout', isLoggedIn, (req, res, next) => {
 req.session.destroy();
 res.redirect('/');
 });
 
 // User profile page GET route
-router.get('/userprofile', (req, res, next) => {
+router.get('/userprofile', isLoggedIn, (req, res, next) => {
   res.render('users/user-profile');
 })
 

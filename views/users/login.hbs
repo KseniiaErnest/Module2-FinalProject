@@ -1,17 +1,17 @@
 <div class="login-container">
-  <h2>Login</h2>
+  <h1>Log in</h1>
  
-  <form action="/user/login" method="POST">
+  <form action="/user/login" method="POST" class="form-login">
  
-    <label> Username
-      <input type="text" name="username" placeholder="Your username" />
+    <label>
+      <input class="input-signup" type="text" name="username" placeholder="Enter name" />
     </label>
  
-    <label>Password
-      <input type="password" name="password" placeholder="*********" />
+    <label>
+      <input class="input-signup" type="password" name="password" placeholder="Enter password" />
     </label>
  
-    <button type="submit">Login</button>
+    <button class="btn-singup" type="submit">Login</button>
  
     {{#if errorMessage}}
       <p class="error">{{errorMessage}}</p>
