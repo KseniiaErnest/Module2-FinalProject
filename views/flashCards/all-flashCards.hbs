@@ -1,0 +1,8 @@
+<h1>All FlashCards Page</h1>
+
+{{#each allCards}}
+<div>
+<h2><a href="/flashCards/details/{{this._id}}">{{allCards.kanji}}</a></h2>
+<h3>{{allCards.meaning}}</h3>
+</div>
+{{/each}}

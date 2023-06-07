@@ -1,0 +1,47 @@
+<div class="kanji-details-container">
+  <h1>{{theFlashCard.kanji}}</h1>
+
+  <div class="kanji-box">
+    <span><h3>Meaning</h3>
+<p>{{theFlashCard.meaning}}</p></span>
+
+<span><h3>Onyomi</h3>
+<p>{{theFlashCard.onyomi}}</p></span>
+
+<span><h3>Kunyomi</h3>
+<p>{{theFlashCard.kunyomi}}</p></span>
+  </div>
+
+  <h3>Strokes</h3>
+<p>{{theFlashCard.strokes}}</p>
+
+<h3>Grade</h3>
+<p>{{theFlashCard.grade}}</p>
+
+
+<h3>Examples</h3>
+<ul>
+  {{#each theFlashCard.examples}}
+  <li>
+    <p>{{this.text}}</p>
+
+    {{#if this.audio}}
+    <audio controls>
+      <source src="{{this.audio}}" type="audio/mpeg">
+    </audio>
+    {{/if}}
+  </li>
+  {{/each}}
+</ul>
+
+
+<h3><a href="{{theFlashCard.link}}" target="_blank">More information</a></h3>
+
+<div>
+<h3>Strokes order</h3>
+{{#each theFlashCard.strokeOrder}}
+<img src="{{this}}" alt="" width="100px">
+{{/each}}
+</div>
+
+</div>
