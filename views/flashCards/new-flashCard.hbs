@@ -1,81 +1,66 @@
-<h1>Create a FlashCard</h1>
-<br>
-<form action="/flashCards/create-flashCard" method="POST" enctype="multipart/form-data">
+<div class="newFlashCard-container">
+<h1>Create New FlashCard</h1>
+
+<form class="newFlashCard-grid-container" action="/flashCards/create-flashCard" method="POST" enctype="multipart/form-data">
+<div class="part1">
 <div>
-<label>Enter kanji</label>
-<input type="text" name="theKanji" id="">
+<input class="input-newCard" type="text" name="theKanji"  placeholder="Enter Kanji">
 </div>
 
-<br> 
 
 <div>
-<label>Enter meaning in English</label>
-<input type="text" name="theMeaning" id="">
+<input class="input-newCard" type="text" name="theMeaning"  placeholder="Enter english meaning">
 </div>
-
-<br>
 
 <div>
-<label>Enter onyomi reading</label>
-<input type="text" name="theOnyomi" id="">
+<input class="input-newCard" type="text" name="theOnyomi"  placeholder="Enter onyomi reading">
 </div>
-
-<br>
 
 <div>
-<label>Enter kunyomi reading</label>
-<input type="text" name="theKunyomi" id="">
+<input class="input-newCard" type="text" name="theKunyomi"  placeholder="Enter kuyomi reading">
 </div>
-
-<br>
 
 <div>
-<label>Enter number of strokes</label>
-<input type="number" name="theStrokes" id="">
+<input class="input-newCard" type="number" name="theStrokes"  placeholder="Enter number of strokes">
 </div>
-
-<br>
 
 <div>
-<label>Enter grade</label>
-<input type="text" name="theGrade" id="">
+<input class="input-newCard" type="text" name="theGrade"  placeholder="Enter grade or level">
 </div>
-
-<br>
 
 <div>
-<label>Enter usage example text</label>
-<input type="text" name="theText" id="">
+<input class="input-newCard" type="text" name="theLink"  placeholder="Enter link to extra sources">
 </div>
-
-<br>
 
 <div>
-<label>Enter usage example audio (optional)</label>
-<input type="file" name="theAudio" id="">
+  <label>Upload stroke order image</label>
+<input type="file" name="theStrokeOrder" >
 </div>
 
-<br>
-
-<div>
-<label>Enter link to resources (for example, Kenkyusha Luminous Japanese-English Online Dictionary )</label>
-<input type="text" name="theLink" id="">
 </div>
 
-<br>
 
-<div>
-<label>Enter Stroke Order Image</label>
-<input type="file" name="theStrokeOrder" id="">
+
+<div class="part2">
+<button id="addExampleBtn" type="button">Add Example</button>
+
+<div id="exampleFieldsContainer">
+  <div class="example-field">
+    <input type="text" name="theText[]" required placeholder="Enter example text">
+    <label>Upload example audio</label>
+    <input type="file" name="theAudio[]" accept="audio/*" >
+  </div>
 </div>
 
-<br>
-
-<button type="submit">Create a FlashCard</button>
+</div>
 
 
 
-
+<button id="newCard-btn" type="submit">Create New FlashCard</button>
 
 
 </form>
+
+</div>
+
+<script src="/js/newFlashCard.js"></script>

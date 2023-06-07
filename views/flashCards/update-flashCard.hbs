@@ -42,21 +42,23 @@
 <input type="text" name="theGrade" id="" value="{{theCard.grade}}">
 </div>
 
-<br>
+<br><br><br>
 
+{{#each theCard.examples}}
 <div>
 <label>Enter usage example text</label>
-<input type="text" name="theText" id="" value="{{theCard.examples.[0].text}}">
+<input type="text" name="theText[]" id="" value="{{this.text}}">
 </div>
 
 <br>
 
 <div>
 <label>Enter usage example audio (optional)</label>
-<input type="file" name="theAudio" id="" >
+<input type="file" name="theAudio[]" id="" >
 </div>
+{{/each}}
 
-<br>
+<br><br><br>
 
 <div>
 <label>Enter link to resources (for example, Kenkyusha Luminous Japanese-English Online Dictionary )</label>

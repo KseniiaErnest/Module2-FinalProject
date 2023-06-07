@@ -31,13 +31,25 @@ FlashCard.findById(req.params.theID)
 // Create New FlashCard GET and POST routes
 router.get('/create-flashCard', /* isLoggedIn */ (req, res, next) => {
   res.render('flashCards/new-flashCard');
-} )
+} );
 
 router.post('/create-flashCard', /* isLoggedIn */ uploader.fields([
   {name: 'theAudio'},
   {name: 'theStrokeOrder'}
 ]), (req, res, next) => {
   const { theAudio, theStrokeOrder } = req.files;
+  const exampleTexts = req.body.theText;
+  const exampleAudios = req.files.theAudio;
+
+  let examples = [];
+
+  for (let i = 0; i < exampleTexts.length; i++) {
+    const example = {
+      text: exampleTexts[i],
+      audio: exampleAudios && exampleAudios[i] ? exampleAudios[i].path : null
+    };
+    examples.push(example);
+  }
 
 FlashCard.create({
   kanji: req.body.theKanji,
@@ -46,10 +58,7 @@ FlashCard.create({
   kunyomi: req.body.theKunyomi,
   strokes: req.body.theStrokes,
   grade: req.body.theGrade,
-  examples: [{
-    text: req.body.theText,
-    audio: theAudio ? theAudio[0].path : null
-  }],
+  examples: examples,
   link: req.body.theLink,
   strokeOrder: theStrokeOrder ? theStrokeOrder[0].path : null
 })
@@ -62,6 +71,7 @@ FlashCard.create({
   next(error);
 })
 });
+
 
 // Update FlashCard GET and POST route
 
@@ -81,6 +91,20 @@ router.post('/update/:theID', /* isLoggedIn */ uploader.fields([
 ]),  (req, res, next) => {
   const { theAudio, theStrokeOrder } = req.files;
 
+  const exampleTexts = req.body.theText;
+  const exampleAudios = req.files.theAudio;
+
+  let examples = [];
+
+  for (let i = 0; i < exampleTexts.length; i++) {
+    const example = {
+      text: exampleTexts[i],
+      audio: exampleAudios && exampleAudios[i] ? exampleAudios[i].path : null
+    };
+    examples.push(example);
+  }
+  
+
 FlashCard.findByIdAndUpdate(req.params.theID, {
   kanji: req.body.theKanji,
   meaning: req.body.theMeaning,
@@ -88,12 +112,10 @@ FlashCard.findByIdAndUpdate(req.params.theID, {
   kunyomi: req.body.theKunyomi,
   strokes: req.body.theStrokes,
   grade: req.body.theGrade,
-  examples: [{
-    text: req.body.theText,
-    audio: theAudio ? theAudio[0].path : null
-  }],
+  examples: examples,
   link: req.body.theLink,
   strokeOrder: theStrokeOrder ? theStrokeOrder[0].path : null
+
 })
 .then(() => {
   req.flash('success', 'Your FlashCard was updated successfully');
@@ -102,7 +124,37 @@ FlashCard.findByIdAndUpdate(req.params.theID, {
 .catch((error) => {
   next(error);
 })
-} )
+});
+
+// router.post('/update/:theID', /* isLoggedIn */ uploader.fields([
+//   {name: 'theAudio'},
+//   {name: 'theStrokeOrder'}
+// ]),  (req, res, next) => {
+//   const { theAudio, theStrokeOrder } = req.files;
+
+// FlashCard.findByIdAndUpdate(req.params.theID, {
+//   kanji: req.body.theKanji,
+//   meaning: req.body.theMeaning,
+//   onyomi: req.body.theOnyomi,
+//   kunyomi: req.body.theKunyomi,
+//   strokes: req.body.theStrokes,
+//   grade: req.body.theGrade,
+//   examples: [{
+//     text: req.body.theText,
+//     audio: theAudio ? theAudio[0].path : null
+//   }],
+//   link: req.body.theLink,
+//   strokeOrder: theStrokeOrder ? theStrokeOrder[0].path : null
+
+// })
+// .then(() => {
+//   req.flash('success', 'Your FlashCard was updated successfully');
+//   res.redirect('/flashCards/details/'+req.params.theID);
+// })
+// .catch((error) => {
+//   next(error);
+// })
+// } );
 
 
 // Delete FlashCard POST route
