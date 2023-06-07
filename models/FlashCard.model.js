@@ -13,7 +13,7 @@ const flashCardSchema = new Schema(
       audio: {type: String, default: null}
     }],
     link: String,
-    strokeOrder: [String]
+    strokeOrder: String
   }
 )
 

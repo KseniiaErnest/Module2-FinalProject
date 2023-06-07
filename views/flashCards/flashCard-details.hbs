@@ -27,7 +27,7 @@
 
     {{#if this.audio}}
     <audio controls>
-      <source src="{{this.audio}}" type="audio/mpeg">
+      <source src="{{this.audio}}" type="audio/mpeg/mp3">
     </audio>
     {{/if}}
   </li>
@@ -39,13 +39,15 @@
 
 <div>
 <h3>Strokes order</h3>
-{{#each theFlashCard.strokeOrder}}
-<img src="{{this}}" alt="" width="100px">
-{{/each}}
+
+<img src="{{theFlashCard.strokeOrder}}" alt="" width="300px">
+
 </div>
 
 <br>
 
+<a href="/flashCards/edit/{{theFlashCard._id}}">Update this FlashCard</a>
+<br>
 
 <form action="/flashCards/delete/{{theFlashCard._id}}" method="POST">
 <button>Delete This FlashCard</button>

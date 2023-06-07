@@ -1,65 +1,66 @@
-<h1>Create a FlashCard</h1>
+<h1>Update your FlashCard</h1>
+
 <br>
-<form action="/flashCards/create-flashCard" method="POST" enctype="multipart/form-data">
+<form action="/flashCards/update/{{theCard._id}}" method="POST" enctype="multipart/form-data">
 <div>
 <label>Enter kanji</label>
-<input type="text" name="theKanji" id="">
+<input type="text" name="theKanji" id="" value="{{theCard.kanji}}">
 </div>
 
 <br> 
 
 <div>
 <label>Enter meaning in English</label>
-<input type="text" name="theMeaning" id="">
+<input type="text" name="theMeaning" id="" value="{{theCard.meaning}}">
 </div>
 
 <br>
 
 <div>
 <label>Enter onyomi reading</label>
-<input type="text" name="theOnyomi" id="">
+<input type="text" name="theOnyomi" id="" value="{{theCard.onyomi}}">
 </div>
 
 <br>
 
 <div>
 <label>Enter kunyomi reading</label>
-<input type="text" name="theKunyomi" id="">
+<input type="text" name="theKunyomi" id="" value="{{theCard.kuyomi}}">
 </div>
 
 <br>
 
 <div>
 <label>Enter number of strokes</label>
-<input type="number" name="theStrokes" id="">
+<input type="number" name="theStrokes" id="" value="{{theCard.strokes}}">
 </div>
 
 <br>
 
 <div>
 <label>Enter grade</label>
-<input type="text" name="theGrade" id="">
+<input type="text" name="theGrade" id="" value="{{theCard.grade}}">
 </div>
 
 <br>
 
 <div>
 <label>Enter usage example text</label>
-<input type="text" name="theText" id="">
+<input type="text" name="theText" id="" value="{{theCard.examples.[0].text}}">
 </div>
 
 <br>
 
 <div>
 <label>Enter usage example audio (optional)</label>
-<input type="file" name="theAudio" id="">
+<input type="file" name="theAudio" id="" >
 </div>
 
 <br>
 
 <div>
 <label>Enter link to resources (for example, Kenkyusha Luminous Japanese-English Online Dictionary )</label>
-<input type="text" name="theLink" id="">
+<input type="text" name="theLink" id="" value="{{theCard.link}}">
 </div>
 
 <br>
