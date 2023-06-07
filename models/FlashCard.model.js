@@ -7,7 +7,7 @@ const flashCardSchema = new Schema(
     onyomi: String,
     kunyomi: String,
     strokes: Number,
-    grade: Number,
+    grade: String,
     examples: [{
       text: String,
       audio: {type: String, default: null}
@@ -18,5 +18,5 @@ const flashCardSchema = new Schema(
 )
 
 
-const FlashCard = model('FlashCard, flashCardSchema');
+const FlashCard = model('FlashCard', flashCardSchema);
 module.exports = FlashCard;
