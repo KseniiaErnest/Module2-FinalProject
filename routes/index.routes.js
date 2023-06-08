@@ -46,7 +46,18 @@ router.get('/:character/details', async (req, res, next) => {
 
     const response = await axios.request(options);
     const resultDetails = response.data;
-    res.render('kanjiAPI/details-kanji', { resultDetails });
+
+   //Access examples and loop through it
+    const examples = resultDetails.examples;
+
+    examples.forEach((example) => {
+      const japanese = example.japanese;
+      const meaning = example.meaning.english;
+      const audioMp3 = example.audio.mp3;
+    });
+    //-----------
+
+    res.render('kanjiAPI/details-kanji', { resultDetails, examples });
   }catch (error) {
       next(error);
     }

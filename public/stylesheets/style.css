@@ -339,6 +339,10 @@ color: #000;
   max-width: 100%;
 }
 
+.kanji-box4 div {
+  padding: 0.5rem;
+} 
+
 .kanji-box5 {
   display: flex;
   align-items: center;

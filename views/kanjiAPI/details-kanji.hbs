@@ -14,24 +14,46 @@
 
 </div>
 
+<div class="kanji-box2">
 <h3>Strokes</h3>
 <p>{{resultDetails.kanji.strokes.count}}</p>
 
 <h3>Grade</h3>
 <p>{{resultDetails.references.grade}}</p>
+</div>
 
-
+<div class="kanji-box3">
 <h3>Examples</h3>
-<p>{{resultDetails.kanji.meaning.english}}</p>
-
-
-<h3><a href="{{resultDetails.luminous}}" target="_blank">More information</a></h3>
-
 <div>
+
+  <ul>
+
+    {{#each examples}}
+    <li>
+    <p>Japanses: {{this.japanese}}</p>
+    <p>English: {{this.meaning}}</p>
+    <audio controls>
+      <source src="{{this.audio.mp3}}" type="audio/mp3"> 
+    </audio>
+    </li>
+    {{/each}}
+
+  </ul>
+
+</div>
+
+
+<h3><a class="flashCard-details-link" href="{{resultDetails.luminous}}" target="_blank">More information</a></h3>
+
+<div  class="kanji-box4">
+
 <h3>Strokes order</h3>
+<div>
 {{#each resultDetails.kanji.strokes.images}}
 <img src="{{this}}" alt="" width="100px">
 {{/each}}
+</div>
+
 </div>
 
 </div>
