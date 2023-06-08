@@ -12,13 +12,17 @@
 <p>{{theFlashCard.kunyomi}}</p></span>
   </div>
 
+<div class="kanji-box2">
   <h3>Strokes</h3>
 <p>{{theFlashCard.strokes}}</p>
 
+
+
 <h3>Grade</h3>
 <p>{{theFlashCard.grade}}</p>
+</div>
 
-
+<div class="kanji-box3">
 <h3>Examples</h3>
 <ul>
   {{#each theFlashCard.examples}}
@@ -34,23 +38,26 @@
   {{/each}}
 </ul>
 
+</div>
 
-<h3><a href="{{theFlashCard.link}}" target="_blank">More information</a></h3>
 
-<div>
+<h3><a class="flashCard-details-link" href="{{theFlashCard.link}}" target="_blank">More information</a></h3>
+
+<div class="kanji-box4">
 <h3>Strokes order</h3>
 
-<img src="{{theFlashCard.strokeOrder}}" alt="" width="300px">
+<img src="{{theFlashCard.strokeOrder}}" alt="Kanji stroke order image">
 
 </div>
 
-<br>
+<div class="kanji-box5">
 
-<a href="/flashCards/edit/{{theFlashCard._id}}">Update this FlashCard</a>
-<br>
+<a class="flashCard-update-link" href="/flashCards/edit/{{theFlashCard._id}}">Update this FlashCard</a>
+
 
 <form action="/flashCards/delete/{{theFlashCard._id}}" method="POST">
-<button>Delete This FlashCard</button>
+<button id="flashCard-delete-btn">Delete This FlashCard</button>
 </form>
+</div>
 
 </div>

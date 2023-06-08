@@ -32,7 +32,7 @@
 <input class="input-newCard" type="text" name="theLink"  placeholder="Enter link to extra sources">
 </div>
 
-<div>
+<div class="newCard-uploadImage">
   <label>Upload stroke order image</label>
 <input type="file" name="theStrokeOrder" >
 </div>
@@ -42,15 +42,16 @@
 
 
 <div class="part2">
-<button id="addExampleBtn" type="button">Add Example</button>
+
 
 <div id="exampleFieldsContainer">
   <div class="example-field">
-    <input type="text" name="theText[]" required placeholder="Enter example text">
-    <label>Upload example audio</label>
-    <input type="file" name="theAudio[]" accept="audio/*" >
+    <input class="newCard-text-exampleInput" type="text" name="theText[]" required placeholder="Enter example text">
+    <label>Upload example audio (optional)</label>
+    <input class="newCard-upload-audio" type="file" name="theAudio[]" accept="audio/*" >
   </div>
 </div>
+<button id="addExampleBtn" type="button">Add More Examples</button>
 
 </div>
 
