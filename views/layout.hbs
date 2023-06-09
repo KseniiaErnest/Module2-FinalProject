@@ -41,8 +41,13 @@
          <h2>よこそ、{{theUserObject.username}}</h2>
          {{/if}}
 
+  {{#if theUserObject}}
          <a href="/flashCards/all">My FlashCards</a>
-         <a href="/flashCards/create-flashCard">Create a FlashCard</a>
+         {{/if}}
+           {{#if theUserObject}}
+          <a href="/flashCards/create-flashCard">Create a FlashCard</a>
+         {{/if}}
+        
 
 
       </nav>

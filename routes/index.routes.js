@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const axios = require('axios');
+const isLoggedIn = require('../middleware/isLoggedIn');
 
 
 // HOME PAGE Route to display search bar and result
@@ -63,7 +64,9 @@ router.get('/:character/details', async (req, res, next) => {
     }
 
 
-})
+});
+
+
 
 
 

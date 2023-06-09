@@ -6,6 +6,7 @@ const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 
 const User = require('../models/User.model');
+const FlashCard = require('../models/FlashCard.model');
 const isLoggedIn = require('../middleware/isLoggedIn');
 
 // USER Signup GET and POST routes
@@ -104,7 +105,16 @@ router.get('/userprofile', (req, res, next) => {
 })
 
 
-
+// User flashCard page
+// router.get('/userprofile', isLoggedIn, (req, res, next) => {
+//   User.findById(req.session.currentUser._id).populate('flashCards')
+//   .then((theUserObject) => {
+//     res.render('users/user-profile', { theUserObject: theUserObject });
+//   })
+//   .catch((error) => {
+//     next(error);
+//   })
+// });
 
 
 

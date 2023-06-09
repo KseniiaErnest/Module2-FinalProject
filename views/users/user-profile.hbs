@@ -1,12 +1,19 @@
-<h1>User Profile Page</h1>
+{{!-- <h1>User Profile Page</h1>
 {{#if theUserObject}}
   <h2>Welcome, {{ theUserObject.username }}!</h2>
   <p>This is your profile page my friend!</p>
-  <button>
-    <a href="/user/userprofile">Reload the page</a>
-  </button>
-{{else}}
-  
-  <br><p>Still no logged in user, sorry!</p>
  
-{{/if}}
+{{/if}} --}}
+
+<h1>User Profile</h1>
+
+<div>Welcome, {{theUserObject.username}}</div>
+
+{{!-- <h3>FlashCards</h3>
+
+{{#each theUserObject.flashCards}}
+<div>
+  <h2>{{this.kanji}}</h2>
+  <h4>{{this.meaning}}</h4>
+</div>
+{{/each}} --}}

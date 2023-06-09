@@ -3,13 +3,16 @@ const router = express.Router();
 
 const mongoose = require('mongoose');
 const FlashCard = require('../models/FlashCard.model');
+const User = require('../models/User.model');
 const isLoggedIn = require('../middleware/isLoggedIn');
 const uploader1 = require('../config/cloudinary.image')
 const uploader2 = require('../config/cloudinary.video');
 
+
+
 // All User-created FlashCards GET routes
-router.get('/all', /* isLoggedIn */ (req, res, next) => {
-  FlashCard.find()
+router.get('/all',  isLoggedIn, (req, res, next) => {
+  FlashCard.find({ createdBy: req.session.currentUser._id})
   .then((allCards) => {
     res.render('flashCards/all-flashCards', { allCards });
   })
@@ -19,7 +22,7 @@ router.get('/all', /* isLoggedIn */ (req, res, next) => {
 });
 
 // FlashCard Details Page GET route
-router.get('/details/:theID', /* isLoggedIn */ (req, res, next) => {
+router.get('/details/:theID', isLoggedIn, (req, res, next) => {
 FlashCard.findById(req.params.theID)
 .then((theFlashCard) => {
   res.render('flashCards/flashCard-details', { theFlashCard });
@@ -30,35 +33,74 @@ FlashCard.findById(req.params.theID)
 });
 
 // Create New FlashCard GET and POST routes
-router.get('/create-flashCard', /* isLoggedIn */ (req, res, next) => {
+
+router.get('/create-flashCard', isLoggedIn, (req, res, next) => {
   res.render('flashCards/new-flashCard');
 } );
 
-router.post('/create-flashCard', /* isLoggedIn */ uploader1.single('theStrokeOrder'), (req, res, next) => {
+router.post('/create-flashCard', isLoggedIn, uploader1.single('theStrokeOrder'), (req, res, next) => {
 
   FlashCard.create({
-  kanji: req.body.theKanji,
-  meaning: req.body.theMeaning,
-  onyomi: req.body.theOnyomi,
-  kunyomi: req.body.theKunyomi,
-  strokes: req.body.theStrokes,
-  grade: req.body.theGrade,
-  link: req.body.theLink,
-  strokeOrder: req.file ? req.file.path : null
+    kanji: req.body.theKanji,
+    meaning: req.body.theMeaning,
+    onyomi: req.body.theOnyomi,
+    kunyomi: req.body.theKunyomi,
+    strokes: req.body.theStrokes,
+    grade: req.body.theGrade,
+    link: req.body.theLink,
+    strokeOrder: req.file ? req.file.path : null,
+    createdBy: req.session.currentUser._id
   })
   .then((response) => {
-    // req.flash('success', 'FlashCard Successfully Created');
-    res.redirect('/flashCards/add-audio/'+ response._id);
+    User.findByIdAndUpdate(req.session.currentUser._id, {
+      $push: {flashCards: response}
+    })
+    .then(() => {
+      req.flash('success', 'FlashCard Successfully Created');
+      res.redirect('/flashCards/add-audio/' + response._id);
+    })
+    .catch((error) => {
+      req.flash('error', 'There was an error, please try again.');
+      next(error);
+    });
   })
   .catch((error) => {
-    req.flash('error', 'There was an error, please, try again.');
     next(error);
-  });
-  
+  })
 });
 
+//////////////////////////////////////////////////////////////////
+
+// router.get('/create-flashCard', isLoggedIn, (req, res, next) => {
+//   res.render('flashCards/new-flashCard');
+// } );
+
+// router.post('/create-flashCard', isLoggedIn, uploader1.single('theStrokeOrder'), (req, res, next) => {
+//   FlashCard.create({
+//     kanji: req.body.theKanji,
+//     meaning: req.body.theMeaning,
+//     onyomi: req.body.theOnyomi,
+//     kunyomi: req.body.theKunyomi,
+//     strokes: req.body.theStrokes,
+//     grade: req.body.theGrade,
+//     link: req.body.theLink,
+//     strokeOrder: req.file ? req.file.path : null
+//     })
+//     .then((response) => {
+//       // req.flash('success', 'FlashCard Successfully Created');
+//       res.redirect('/flashCards/add-audio/'+ response._id);
+//     })
+//     .catch((error) => {
+//       req.flash('error', 'There was an error, please, try again.');
+//       next(error);
+//     });
+  
+// });
+
+//////////////////////////////////////////////////////////////////////////////
+
 // Add audio get and post route
-router.get('/add-audio/:id', /* isLoggedIn */ (req, res, next) => {
+router.get('/add-audio/:id', isLoggedIn, (req, res, next) => {
   FlashCard.findById(req.params.id)
    .then((theCardAudio) => {
     res.render('flashCards/addAudio', { theCardAudio });
@@ -68,11 +110,12 @@ router.get('/add-audio/:id', /* isLoggedIn */ (req, res, next) => {
  })
 });
 
-router.post('/add-audio/:theID', /* isLoggedIn */ uploader2.single('theAudio'), (req, res, next) => {
+
+
+router.post('/add-audio/:theID', isLoggedIn, uploader2.single('theAudio'), (req, res, next) => {
   let examples = [];
   const exampleTexts = req.body.theText;
   const exampleAudios = req.file ? req.file.path : null;
-
 
   for (let i = 0; i < exampleTexts.length; i++) {
     const example = {
@@ -96,47 +139,6 @@ router.post('/add-audio/:theID', /* isLoggedIn */ uploader2.single('theAudio'), 
 });
 
 
-
-// router.post('/create-flashCard', /* isLoggedIn */ uploader.fields([
-//   {name: 'theAudio'},
-//   {name: 'theStrokeOrder'}
-// ]), (req, res, next) => {
-//   const { theAudio, theStrokeOrder } = req.files;
-//   console.log(req.files);
-//   const exampleTexts = req.body.theText;
-//   // const exampleAudios = req.files.theAudio;
-//   const exampleAudios = theAudio ? theAudio : [];
-
-//   let examples = [];
-
-//   for (let i = 0; i < exampleTexts.length; i++) {
-//     const example = {
-//       text: exampleTexts[i],
-//       audio: exampleAudios && exampleAudios[i] ? exampleAudios[i].path : null
-//     };
-//     examples.push(example);
-//   }
-
-// FlashCard.create({
-//   kanji: req.body.theKanji,
-//   meaning: req.body.theMeaning,
-//   onyomi: req.body.theOnyomi,
-//   kunyomi: req.body.theKunyomi,
-//   strokes: req.body.theStrokes,
-//   grade: req.body.theGrade,
-//   examples: examples,
-//   link: req.body.theLink,
-//   strokeOrder: theStrokeOrder ? theStrokeOrder[0].path : null
-// })
-// .then((response) => {
-//   req.flash('success', 'FlashCard Successfully Created');
-//   res.redirect('/flashCards/all');
-// })
-// .catch((error) => {
-//   req.flash('error', 'There was an error, please, try again.');
-//   next(error);
-// })
-// });
 
 
 // Update FlashCard GET and POST route
@@ -194,9 +196,8 @@ router.post('/add-audio/:theID', /* isLoggedIn */ uploader2.single('theAudio'), 
 
 
 
-
 // Delete FlashCard POST route
-router.post('/delete/:theID', /* isLoggedIn */ (req, res, next) => {
+router.post('/delete/:theID', isLoggedIn, (req, res, next) => {
   FlashCard.findByIdAndRemove(req.params.theID)
   .then(() => {
     req.flash('success', 'FlashCard was successfully deleted');
@@ -205,7 +206,31 @@ router.post('/delete/:theID', /* isLoggedIn */ (req, res, next) => {
   .catch((error) => {
     next(error);
   })
-})
+});
+
+
+// Add to UserProfile
+// router.post('/add/:id', isLoggedIn, (req, res, next) => {
+//   const flashcardID = req.params.id;
+
+//   FlashCard.findById(flashcardID)
+//   .then((theFC) => {
+//     const userID = req.session.currentUser._id;
+//     User.findByIdAndUpdate(userID, {
+//       $push: {flashCards: theFC}
+//     })
+//     .then(() => {
+//       req.flash('success', 'FlashCard was successfully added');
+//       res.redirect('/user/userprofile');
+//     })
+//     .catch((error) => {
+//       next(error);
+//     })
+//   })
+//   .catch((error) => {
+//     next(error);
+//   })
+// })
 
 
 

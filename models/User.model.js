@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model, default: mongoose } = require("mongoose");
 
 const userSchema = new Schema(
   {
@@ -20,8 +20,10 @@ const userSchema = new Schema(
       type: String,
       required: [true, 'Password is required.']
     },
-    admin: {type: Boolean, default: false}
+    admin: {type: Boolean, default: false},
+    flashCards: [{type: mongoose.Types.ObjectId, ref: 'FlashCard'}]
   },
+
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`    
     timestamps: true

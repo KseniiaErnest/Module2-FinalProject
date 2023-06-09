@@ -54,6 +54,11 @@
 
 <a class="flashCard-update-link" href="/flashCards/edit/{{theFlashCard._id}}">Update this FlashCard</a>
 
+{{#if theUserObject}}
+<form action="/flashCards/add/{{theFlashCard._id}}" method="POST">
+<button>Add To My Profile</button>
+</form>
+{{/if}}
 
 <form action="/flashCards/delete/{{theFlashCard._id}}" method="POST">
 <button id="flashCard-delete-btn">Delete This FlashCard</button>
