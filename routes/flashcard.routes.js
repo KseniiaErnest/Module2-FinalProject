@@ -34,11 +34,11 @@ FlashCard.findById(req.params.theID)
 
 // Create New FlashCard GET and POST routes
 
-router.get('/create-flashCard', isLoggedIn, (req, res, next) => {
+router.get('/create-flashCard', /* isLoggedIn ,*/ (req, res, next) => {
   res.render('flashCards/new-flashCard');
 } );
 
-router.post('/create-flashCard', isLoggedIn, uploader1.single('theStrokeOrder'), (req, res, next) => {
+router.post('/create-flashCard', /* isLoggedIn,*/ uploader1.single('theStrokeOrder'), (req, res, next) => {
 
   FlashCard.create({
     kanji: req.body.theKanji,
@@ -56,7 +56,6 @@ router.post('/create-flashCard', isLoggedIn, uploader1.single('theStrokeOrder'),
       $push: {flashCards: response}
     })
     .then(() => {
-      req.flash('success', 'FlashCard Successfully Created');
       res.redirect('/flashCards/add-audio/' + response._id);
     })
     .catch((error) => {
@@ -100,7 +99,7 @@ router.post('/create-flashCard', isLoggedIn, uploader1.single('theStrokeOrder'),
 //////////////////////////////////////////////////////////////////////////////
 
 // Add audio get and post route
-router.get('/add-audio/:id', isLoggedIn, (req, res, next) => {
+router.get('/add-audio/:id', /* isLoggedIn, */ (req, res, next) => {
   FlashCard.findById(req.params.id)
    .then((theCardAudio) => {
     res.render('flashCards/addAudio', { theCardAudio });
@@ -112,7 +111,7 @@ router.get('/add-audio/:id', isLoggedIn, (req, res, next) => {
 
 
 
-router.post('/add-audio/:theID', isLoggedIn, uploader2.single('theAudio'), (req, res, next) => {
+router.post('/add-audio/:theID', /* isLoggedIn,*/ uploader2.single('theAudio'), (req, res, next) => {
   let examples = [];
   const exampleTexts = req.body.theText;
   const exampleAudios = req.file ? req.file.path : null;

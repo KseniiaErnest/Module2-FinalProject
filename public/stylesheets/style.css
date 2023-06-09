@@ -25,6 +25,14 @@ body {
   box-shadow: 0 10px 15px 5px rgba(0, 0, 0, 0.05) ;
 }
 
+.navigation-box {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  margin-left: auto;
+  padding-right: 1.4rem;
+}
+
 .nav-bar a:link, .nav-bar a:active {
   display: block;
   position: relative;
@@ -443,11 +451,17 @@ font-size: 4rem;
   margin-bottom: 3rem;
 }
 
-.newFlashCard-grid-container {
+.newFlashCard-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* .newFlashCard-grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 5rem;
-}
+} */
 
 .part1 {
   padding: 1rem;
@@ -462,9 +476,9 @@ font-size: 4rem;
 }
 
 
-#newCard-btn {
+.newCard-btn {
   justify-self: center;
-  margin-top: 3rem;
+  margin-top: 5rem;
   font-size: 2.4rem;
   padding: 0.9rem 1.1rem;
   border-radius: 9px;
@@ -505,17 +519,29 @@ font-size: 4rem;
 
 }
 
-.part2 {
+.addAudio-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  margin-top: 5rem;
+  
 }
 
+.addAudio-container h1 {
+  font-size: 3rem;
+  margin-bottom: 3rem;
+}
+
+.addAudio-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .example-field {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 2.4rem;
 }
 
 .example-field label {
@@ -544,4 +570,18 @@ font-size: 4rem;
   background-color: #e8cccc;
   font-family: 'Noto Sans', sans-serif;
   cursor: pointer;
+
+}
+
+/* User Profile Page */
+
+.userProfile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.userProfile-container h1 {
+  font-size: 5rem;
 }
