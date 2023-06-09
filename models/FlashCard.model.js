@@ -8,7 +8,8 @@ const flashCardSchema = new Schema(
     kunyomi: String,
     strokes: Number,
     grade: String,
-    examples: [{
+    examples: [
+      {
       text: String,
       audio: {type: String, default: null}
     }],

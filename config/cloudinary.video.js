@@ -15,8 +15,9 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
+    resource_type: 'video',
     folder: 'kanji-app',
-    format: async (req, file) => 'png'|| 'jpg' || 'jpeg' || 'mpeg' || 'mp3', 
+    format: async (req, file) =>  'mp3',
     public_id: (req, file) => file.originalname,
   },
 });

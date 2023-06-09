@@ -31,8 +31,8 @@
     {{#each examples}}
     <li>
     <p>Japanses: {{this.japanese}}</p>
-    <p>English: {{this.meaning}}</p>
-    <audio controls>
+    <p>English: {{this.meaning.english}}</p>
+    <audio class="kanji-details-audio" controls>
       <source src="{{this.audio.mp3}}" type="audio/mp3"> 
     </audio>
     </li>
