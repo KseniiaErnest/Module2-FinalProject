@@ -12,10 +12,11 @@ const uploader2 = require('../config/cloudinary.video');
 
 // All User-created FlashCards GET routes
 
-router.get('/all', (req, res, next) => {
-  FlashCard.find({ createdByUser: true})
+router.get('/all', isLoggedIn, (req, res, next) => {
+
+  FlashCard.find({ $and: [ {createdBy: req.session.currentUser._id}, {createdByUser: true} ]})
   .then(createdByUserFlashCards => {
-    FlashCard.find({ createdByUser: false})
+    FlashCard.find({ $and: [ {createdBy: req.session.currentUser._id}, {createdByUser: false} ]})
     .then(kanjiFromApi => {
       res.render('flashCards/all-flashCards', {createdByUserFlashCards, kanjiFromApi});
     })
@@ -28,15 +29,6 @@ router.get('/all', (req, res, next) => {
   })
 })
 
-// router.get('/all',  isLoggedIn, (req, res, next) => {
-//   FlashCard.find({ createdBy: req.session.currentUser._id})
-//   .then((allCards) => {
-//     res.render('flashCards/all-flashCards', { allCards });
-//   })
-//   .catch((error) => {
-//     next(error);
-//   })
-// });
 
 // FlashCard Details Page GET route
 router.get('/details/:theID', isLoggedIn, (req, res, next) => {
@@ -51,11 +43,11 @@ FlashCard.findById(req.params.theID)
 
 // Create New FlashCard GET and POST routes
 
-router.get('/create-flashCard', /* isLoggedIn ,*/ (req, res, next) => {
+router.get('/create-flashCard', isLoggedIn , (req, res, next) => {
   res.render('flashCards/new-flashCard');
 } );
 
-router.post('/create-flashCard', /* isLoggedIn,*/ uploader1.single('theStrokeOrder'), (req, res, next) => {
+router.post('/create-flashCard', isLoggedIn, uploader1.single('theStrokeOrder'), (req, res, next) => {
 
   FlashCard.create({
     kanji: req.body.theKanji,
@@ -89,7 +81,7 @@ router.post('/create-flashCard', /* isLoggedIn,*/ uploader1.single('theStrokeOrd
 
 
 // Add audio get and post route
-router.get('/add-audio/:id', /* isLoggedIn, */ (req, res, next) => {
+router.get('/add-audio/:id', isLoggedIn, (req, res, next) => {
   FlashCard.findById(req.params.id)
    .then((theCardAudio) => {
     res.render('flashCards/addAudio', { theCardAudio });
@@ -99,7 +91,7 @@ router.get('/add-audio/:id', /* isLoggedIn, */ (req, res, next) => {
  })
 });
 
-router.post('/add-audio/:theID', /* isLoggedIn,*/ uploader2.single('theAudio'), (req, res, next) => {
+router.post('/add-audio/:theID',  isLoggedIn, uploader2.single('theAudio'), (req, res, next) => {
   let examples = [];
   const exampleTexts = req.body.theText;
   const exampleAudios = req.file ? req.file.path : null;
@@ -196,7 +188,7 @@ router.post('/delete/:theID', isLoggedIn, (req, res, next) => {
 });
 
 //Add KanjiAPI to My FlashCard 
-router.post('/add-kanji', /* isLoggedIn*/ (req, res, next ) => {
+router.post('/add-kanji', isLoggedIn, (req, res, next ) => {
   const kanjiData = req.body;
   console.log(kanjiData);
   const userID = req.session.currentUser._id;
