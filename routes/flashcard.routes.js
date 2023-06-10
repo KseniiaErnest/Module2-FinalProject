@@ -11,15 +11,32 @@ const uploader2 = require('../config/cloudinary.video');
 
 
 // All User-created FlashCards GET routes
-router.get('/all',  isLoggedIn, (req, res, next) => {
-  FlashCard.find({ createdBy: req.session.currentUser._id})
-  .then((allCards) => {
-    res.render('flashCards/all-flashCards', { allCards });
+
+router.get('/all', (req, res, next) => {
+  FlashCard.find({ createdByUser: true})
+  .then(createdByUserFlashCards => {
+    FlashCard.find({ createdByUser: false})
+    .then(kanjiFromApi => {
+      res.render('flashCards/all-flashCards', {createdByUserFlashCards, kanjiFromApi});
+    })
+    .catch((error) => {
+      next(error);
+    })
   })
   .catch((error) => {
     next(error);
   })
-});
+})
+
+// router.get('/all',  isLoggedIn, (req, res, next) => {
+//   FlashCard.find({ createdBy: req.session.currentUser._id})
+//   .then((allCards) => {
+//     res.render('flashCards/all-flashCards', { allCards });
+//   })
+//   .catch((error) => {
+//     next(error);
+//   })
+// });
 
 // FlashCard Details Page GET route
 router.get('/details/:theID', isLoggedIn, (req, res, next) => {
@@ -49,7 +66,8 @@ router.post('/create-flashCard', /* isLoggedIn,*/ uploader1.single('theStrokeOrd
     grade: req.body.theGrade,
     link: req.body.theLink,
     strokeOrder: req.file ? req.file.path : null,
-    createdBy: req.session.currentUser._id
+    createdBy: req.session.currentUser._id,
+    createdByUser: true
   })
   .then((response) => {
     User.findByIdAndUpdate(req.session.currentUser._id, {
@@ -68,35 +86,7 @@ router.post('/create-flashCard', /* isLoggedIn,*/ uploader1.single('theStrokeOrd
   })
 });
 
-//////////////////////////////////////////////////////////////////
 
-// router.get('/create-flashCard', isLoggedIn, (req, res, next) => {
-//   res.render('flashCards/new-flashCard');
-// } );
-
-// router.post('/create-flashCard', isLoggedIn, uploader1.single('theStrokeOrder'), (req, res, next) => {
-//   FlashCard.create({
-//     kanji: req.body.theKanji,
-//     meaning: req.body.theMeaning,
-//     onyomi: req.body.theOnyomi,
-//     kunyomi: req.body.theKunyomi,
-//     strokes: req.body.theStrokes,
-//     grade: req.body.theGrade,
-//     link: req.body.theLink,
-//     strokeOrder: req.file ? req.file.path : null
-//     })
-//     .then((response) => {
-//       // req.flash('success', 'FlashCard Successfully Created');
-//       res.redirect('/flashCards/add-audio/'+ response._id);
-//     })
-//     .catch((error) => {
-//       req.flash('error', 'There was an error, please, try again.');
-//       next(error);
-//     });
-  
-// });
-
-//////////////////////////////////////////////////////////////////////////////
 
 // Add audio get and post route
 router.get('/add-audio/:id', /* isLoggedIn, */ (req, res, next) => {
@@ -108,8 +98,6 @@ router.get('/add-audio/:id', /* isLoggedIn, */ (req, res, next) => {
      next(error);
  })
 });
-
-
 
 router.post('/add-audio/:theID', /* isLoggedIn,*/ uploader2.single('theAudio'), (req, res, next) => {
   let examples = [];
@@ -207,29 +195,39 @@ router.post('/delete/:theID', isLoggedIn, (req, res, next) => {
   })
 });
 
+//Add KanjiAPI to My FlashCard 
+router.post('/add-kanji', /* isLoggedIn*/ (req, res, next ) => {
+  const kanjiData = req.body;
+  console.log(kanjiData);
+  const userID = req.session.currentUser._id;
 
-// Add to UserProfile
-// router.post('/add/:id', isLoggedIn, (req, res, next) => {
-//   const flashcardID = req.params.id;
+  FlashCard.create({
+    kanji: kanjiData.kanji,
+    meaning: kanjiData.meaning,
+    onyomi: kanjiData.onyomi,
+    kunyomi: kanjiData.kunyomi,
+    strokes: kanjiData.strokes,
+    grade: kanjiData.grade,
+    link: kanjiData.link,
+    strokeOrder: kanjiData.strokeOrder,
+    createdBy: userID,
+    createdByUser: false
+  })
+  .then((newFlashCard) => {
+    return User.findByIdAndUpdate(userID, {
+      $push:{ flashCards: newFlashCard._id }
+    });
+  })
+  .then(() => {
+    req.flash('success', 'Kanji added to FlashCards successfully');
+    res.redirect('/flashCards/all');
+  })
+  .catch((error) => {
+    next(error);
+  })
+})
 
-//   FlashCard.findById(flashcardID)
-//   .then((theFC) => {
-//     const userID = req.session.currentUser._id;
-//     User.findByIdAndUpdate(userID, {
-//       $push: {flashCards: theFC}
-//     })
-//     .then(() => {
-//       req.flash('success', 'FlashCard was successfully added');
-//       res.redirect('/user/userprofile');
-//     })
-//     .catch((error) => {
-//       next(error);
-//     })
-//   })
-//   .catch((error) => {
-//     next(error);
-//   })
-// })
+
 
 
 

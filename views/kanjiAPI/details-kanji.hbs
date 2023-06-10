@@ -56,5 +56,21 @@
 
 </div>
 
+{{#if theUserObject}}
+<form action="/flashCards/add-kanji" method="POST">
+<input type="text" name="kanji" value="{{resultDetails.kanji.character}}" hidden>
+<input type="text" name="meaning" value="{{resultDetails.kanji.meaning.english}}" hidden>
+<input type="text" name="onyomi" value="{{resultDetails.kanji.onyomi.katakana}}" hidden>
+<input type="text" name="kunyomi" value="{{resultDetails.kanji.kunyomi.hiragana}}" hidden>
+<input type="number" name="strokes" value="{{resultDetails.kanji.strokes.count}}" hidden>
+<input type="text" name="grade" value="{{resultDetails.references.grade}}" hidden>
+<input type="text" name="link" value="{{resultDetails.luminous}}" hidden>
+<input type="text" name="userID" value="{{theUserObject._id}}" hidden>
+
+
+<button>Add This Kanji to My FlashCards</button>
+
+</form>
+{{/if}}
 
 </div>

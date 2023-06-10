@@ -31,7 +31,7 @@
 
     {{#if this.audio}}
     <audio controls>
-      <source src="{{this.audio}}" type="audio/mpeg/mp3">
+      <source src="{{this.audio}}" type="audio/mp3">
     </audio>
     {{/if}}
   </li>
@@ -54,11 +54,6 @@
 
 <a class="flashCard-update-link" href="/flashCards/edit/{{theFlashCard._id}}">Update this FlashCard</a>
 
-{{#if theUserObject}}
-<form action="/flashCards/add/{{theFlashCard._id}}" method="POST">
-<button>Add To My Profile</button>
-</form>
-{{/if}}
 
 <form action="/flashCards/delete/{{theFlashCard._id}}" method="POST">
 <button id="flashCard-delete-btn">Delete This FlashCard</button>

@@ -15,7 +15,11 @@ const flashCardSchema = new Schema(
     }],
     link: String,
     strokeOrder: String,
-    createdBy: { type: mongoose.Types.ObjectId, ref: 'User' }
+    createdBy: { type: mongoose.Types.ObjectId, ref: 'User' },
+    createdByUser: {
+      type: Boolean,
+      default: true
+    }
   }
 )
 
