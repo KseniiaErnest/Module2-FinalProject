@@ -1,0 +1,18 @@
+<h1>Notes</h1>
+
+<div>
+
+  {{#each notes}}
+  <div>
+  <h2>{{this.title}}</h2>
+  <p>{{this.content}}</p>
+  <button><a href="/note/edit-note/{{this._id}}"> Update This Note</a></button>
+
+  <form action="/note/{{this._id}}/delete-note" method="POST">
+    <button> Delete This Note</button>
+  </form>
+</div>
+  {{/each}}
+
+
+</div>

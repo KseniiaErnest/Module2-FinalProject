@@ -1,0 +1,15 @@
+<h1>Update This Note</h1>
+<form action="/note/update-note/{{theNote._id}}" method="POST">
+  <div>
+    <label>Give a Title to a Note</label>
+    <input type="text" name="theTitle" id="" placeholder="Enter title" value="{{theNote.title}}">
+  </div>
+
+    <div>
+    <label>Content</label>
+    <input type="text" name="theContent" id="" placeholder="Enter content" value="{{theNote.content}}">
+  </div>
+
+  <button type="submit">Update</button>
+
+  </form>
