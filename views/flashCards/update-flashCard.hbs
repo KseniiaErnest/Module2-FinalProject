@@ -25,7 +25,7 @@
 
 <div>
 <label>Enter kunyomi reading</label>
-<input type="text" name="theKunyomi" id="" value="{{theCard.kuyomi}}">
+<input type="text" name="theKunyomi" id="" value="{{theCard.kunyomi}}">
 </div>
 
 <br>
@@ -44,7 +44,7 @@
 
 <br><br><br>
 
-{{#each theCard.examples}}
+{{!-- {{#each theCard.examples}}
 <div>
 <label>Enter usage example text</label>
 <input type="text" name="theText[]" id="" value="{{this.text}}">
@@ -56,7 +56,7 @@
 <label>Enter usage example audio (optional)</label>
 <input type="file" name="theAudio[]" id="" >
 </div>
-{{/each}}
+{{/each}} --}}
 
 <br><br><br>
 
@@ -74,7 +74,7 @@
 
 <br>
 
-<button type="submit">Create a FlashCard</button>
+<button type="submit">Save Changes</button>
 
 
 

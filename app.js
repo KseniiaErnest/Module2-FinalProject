@@ -48,6 +48,9 @@ app.use('/user', usersRoutes);
 const flashCardRoutes = require('./routes/flashcard.routes');
 app.use('/flashCards', flashCardRoutes);
 
+const noteRoutes = require('./routes/note.routes');
+app.use('/note', noteRoutes);
+
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
 

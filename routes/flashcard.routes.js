@@ -119,18 +119,72 @@ router.post('/add-audio/:theID',  isLoggedIn, uploader2.single('theAudio'), (req
 
 
 
-
 // Update FlashCard GET and POST route
 
-// router.get('/edit/:id', /* isLoggedIn */ (req, res, next) => {
-//   FlashCard.findById(req.params.id)
-//   .then((theCard) => {
-//     res.render('flashCards/update-flashCard', { theCard });
-//   })
-//   .catch((error) => {
-//     next(error);
-//   })
-// });
+router.get('/edit/:id', /* isLoggedIn */ (req, res, next) => {
+  FlashCard.findById(req.params.id)
+  .then((theCard) => {
+    res.render('flashCards/update-flashCard', { theCard });
+  })
+  .catch((error) => {
+    next(error);
+  })
+});
+
+router.post('/update/:theID', /* isLoggedIn */ uploader1.single('theStrokeOrder'), (req, res, next) => {
+  let theUpdate = {
+  kanji: req.body.theKanji,
+  meaning: req.body.theMeaning,
+  onyomi: req.body.theOnyomi,
+  kunyomi: req.body.theKunyomi,
+  strokes: req.body.theStrokes,
+  grade: req.body.theGrade,
+  link: req.body.theLink
+  }
+  if(req.file) theUpdate.theStrokeOrder = req.file.path;
+  
+  FlashCard.findByIdAndUpdate(req.params.theID, theUpdate)
+  .then(() => {
+    res.redirect('/flashCards/update-audio/'+req.params.theID);
+  })
+  .catch((error) =>{
+    next(error);
+  })
+});
+
+router.get('/edit-audio/:id', /* isLoggedIn, */  (req, res, next) => {
+  FlashCard.findById(req.params.id)
+   .then((theAudioText) => {
+    res.render('flashCards/update-audio', { theAudioText: theAudioText });
+  })
+ .catch((error) => {
+     next(error);
+ })
+});
+
+router.post('/update-audio/:theID', /* isLoggedIn, */ uploader2.single('theAudio'), (req, res, next) => {
+  const textExamples = req.body.theText;
+  const audioExample = req.file ? req.file.path : null;
+
+const examples = textExamples.map((text, index) => ({
+  text: text,
+  audio: audioExample
+}));
+
+
+  FlashCard.findByIdAndUpdate(req.params.theID, {
+    examples: examples
+  }) 
+  .then(() => {
+    req.flash('success', 'Your FlashCard was updated successfully');
+    res.redirect('/flashCards/flashCard-details/'+req.params.theID);
+  })
+  .catch((error) => {
+    next(error);
+  })
+});
+
+
 
 // router.post('/update/:theID', /* isLoggedIn */ uploader.fields([
 //   {name: 'theAudio'},

@@ -19,7 +19,8 @@ const flashCardSchema = new Schema(
     createdByUser: {
       type: Boolean,
       default: true
-    }
+    },
+    notes: [{type: mongoose.Types.ObjectId, ref: 'Note' }]
   }
 )
 

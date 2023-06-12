@@ -1,0 +1,15 @@
+<form action="/flashCards/update-audio/{{theAudioText._id}}" method="POST" enctype="multipart/form-data"></form>
+
+{{#each theAudioText.examples}}
+<div>
+<label>Enter usage example text</label>
+<input type="text" name="theText[]" id="" value="{{this.text}}">
+</div>
+
+<br>
+
+<div>
+<label>Enter usage example audio (optional)</label>
+<input type="file" name="theAudio" id="" value="{{this.audio}}">
+</div>
+{{/each}}
