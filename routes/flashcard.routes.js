@@ -145,7 +145,7 @@ router.post('/update/:theID', /* isLoggedIn */ uploader1.single('theStrokeOrder'
   
   FlashCard.findByIdAndUpdate(req.params.theID, theUpdate)
   .then(() => {
-    res.redirect('/flashCards/update-audio/'+req.params.theID);
+    res.redirect('/flashCards/edit-audio/'+req.params.theID);
   })
   .catch((error) =>{
     next(error);
@@ -166,7 +166,7 @@ router.post('/update-audio/:theID', /* isLoggedIn, */ uploader2.single('theAudio
   const textExamples = req.body.theText;
   const audioExample = req.file ? req.file.path : null;
 
-const examples = textExamples.map((text, index) => ({
+const examples = textExamples.map((text) => ({
   text: text,
   audio: audioExample
 }));
@@ -177,56 +177,12 @@ const examples = textExamples.map((text, index) => ({
   }) 
   .then(() => {
     req.flash('success', 'Your FlashCard was updated successfully');
-    res.redirect('/flashCards/flashCard-details/'+req.params.theID);
+    res.redirect('/flashCards/details/'+req.params.theID);
   })
   .catch((error) => {
     next(error);
   })
 });
-
-
-
-// router.post('/update/:theID', /* isLoggedIn */ uploader.fields([
-//   {name: 'theAudio'},
-//   {name: 'theStrokeOrder'}
-// ]),  (req, res, next) => {
-//   const { theAudio, theStrokeOrder } = req.files;
-
-//   const exampleTexts = req.body.theText;
-//   const exampleAudios = req.files.theAudio;
-
-//   let examples = [];
-
-//   for (let i = 0; i < exampleTexts.length; i++) {
-//     const example = {
-//       text: exampleTexts[i],
-//       audio: exampleAudios && exampleAudios[i] ? exampleAudios[i].path : null
-//     };
-//     examples.push(example);
-//   }
-  
-
-// FlashCard.findByIdAndUpdate(req.params.theID, {
-//   kanji: req.body.theKanji,
-//   meaning: req.body.theMeaning,
-//   onyomi: req.body.theOnyomi,
-//   kunyomi: req.body.theKunyomi,
-//   strokes: req.body.theStrokes,
-//   grade: req.body.theGrade,
-//   examples: examples,
-//   link: req.body.theLink,
-//   strokeOrder: theStrokeOrder ? theStrokeOrder[0].path : null
-
-// })
-// .then(() => {
-//   req.flash('success', 'Your FlashCard was updated successfully');
-//   res.redirect('/flashCards/details/'+req.params.theID);
-// })
-// .catch((error) => {
-//   next(error);
-// })
-// });
-
 
 
 // Delete FlashCard POST route
@@ -244,7 +200,6 @@ router.post('/delete/:theID', isLoggedIn, (req, res, next) => {
 //Add KanjiAPI to My FlashCard 
 router.post('/add-kanji', isLoggedIn, (req, res, next ) => {
   const kanjiData = req.body;
-  console.log(kanjiData);
   const userID = req.session.currentUser._id;
 
   FlashCard.create({

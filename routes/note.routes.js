@@ -9,14 +9,15 @@ const isLoggedIn = require('../middleware/isLoggedIn');
 
 // Create Note GET and POST routes
 
-router.get('/create-note/:flashcardId', /* isLoggedIn , */ (req, res, next) => {
-  res.render('notes/new-note', {flashcardId: req.params.flashcardId});
+router.get('/create-note/:flashcardId/:character', /* isLoggedIn , */ (req, res, next) => {
+  res.render('notes/new-note', {flashcardId: req.params.flashcardId, characterId:req.params.character});
 });
 
-router.post('/create-note/:flashcardId', /* isLoggedIn , */ (req, res, next) => {
+router.post('/create-note/:flashcardId/:character', /* isLoggedIn , */ (req, res, next) => {
 
   const { theTitle, theContent } = req.body;
   const flashcardId = req.params.flashcardId;
+  const character = req.params.character;
 
   Note.create({
     title: theTitle,
@@ -28,9 +29,10 @@ router.post('/create-note/:flashcardId', /* isLoggedIn , */ (req, res, next) => 
     FlashCard.findByIdAndUpdate(flashcardId, {
       $push: {notes: createdNote._id}
     })
-    .then(() => {
+    .then((flashC) => {
+      const redirectURL = flashC.createdByUser ? `/flashCards/details/${flashcardId}` : `/${character}/details`;
       req.flash('success', 'Note created successfully');
-      res.redirect(`/flashCards/details/${flashcardId}`);
+      res.redirect(redirectURL);
     })
     .catch((error) => {
       next(error);
