@@ -1,5 +1,92 @@
+<section class="kanji-details-bigContainer">
 
-<div class="kanji-details-container">
+  <div class="kanji-container1">
+
+    <div class="kanji-box-grid">
+
+<div class="kanji-box1">
+        <h1>{{theFlashCard.kanji}}</h1>
+        <span>
+          <h3>Meaning</h3>
+<p class="smaller-text">{{theFlashCard.meaning}}</p>
+</span>
+</div>
+
+<div class="kanji-box1-part2">
+<span><h3>Onyomi</h3>
+<p class="smaller-text">{{theFlashCard.onyomi}}</p></span>
+
+<span class="smaller-text"><h3>Kunyomi</h3>
+<p class="smaller-text">{{theFlashCard.kunyomi}}</p></span>
+
+<span>
+  <h3>Strokes</h3>
+<p class="smaller-text">{{theFlashCard.strokes}}</p>
+</span>
+
+<span>
+<h3>Grade</h3>
+<p class="smaller-text">{{theFlashCard.grade}}</p>
+</span>
+
+<h3><a class="flashCard-details-link" href="{{theFlashCard.link}}" target="_blank">More information</a></h3>
+</div>
+
+</div>
+
+<div class="kanji-box2">
+<img src="{{theFlashCard.strokeOrder}}" alt="Kanji stroke order image">
+</div>
+
+<div class="btn-container">
+<a class="btn" href="/flashCards/edit/{{theFlashCard._id}}">Update this FlashCard</a>
+
+
+<form action="/flashCards/delete/{{theFlashCard._id}}" method="POST">
+<button class="btn" id="flashCard-delete-btn">Delete This FlashCard</button>
+</form>
+
+<div>
+  <button class="btn"><a href="/note/create-note/{{theFlashCard._id}}/{{theFlashCard.kanji}}">Add Note</a></button>
+</div>
+
+{{#if theFlashCard.notes.length}}
+<div>
+  <button class="btn"><a href="/note/see-notes/{{theFlashCard._id}}">Check Notes for this FlashCard</a></button>
+  </div>
+
+  </div>
+  {{/if}}
+
+
+
+    </div>
+
+    <div class="kanji-box3 flashcard-example-box">
+
+      <h3>Examples</h3>
+<ul>
+  {{#each theFlashCard.examples}}
+  <li>
+    <p>{{this.text}}</p>
+
+    {{#if this.audio}}
+    <audio controls>
+      <source src="{{this.audio}}" type="audio/mp3">
+    </audio>
+    {{/if}}
+  </li>
+  {{/each}}
+</ul>
+
+    </div>
+
+
+
+</section>
+
+
+{{!-- <div class="kanji-details-container">
   <h1>{{theFlashCard.kanji}}</h1>
 
   <div class="kanji-box">
@@ -71,4 +158,4 @@
   </div>
   {{/if}}
 
-</div>
+</div> --}}
