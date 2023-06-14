@@ -253,79 +253,114 @@ z-index: 10;
 
 /* Kanji Details */
 
-.kanji-details-container {
-  background-color: #e8cccc;
-  width: 60%;
+.kanji-details-bigContainer {
+  width: 90%;
+  display: grid;
+  grid-template-columns: 2fr 1.2fr;
   margin: 0 auto;
-  margin-top: 5rem;
-  margin-bottom: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  background-color: #f3e6e6;
+  padding: 2rem 1.5rem;
   gap: 2rem;
-  padding: 2rem 1rem;
+  margin-top: 4rem;
+  margin-bottom: 1.5rem;
   border-radius: 11px;
   box-shadow: 3px 3px 15px 5px rgb(0, 0, 0, 0.05);
-
 }
 
-.kanji-details-container h1 {
-  font-size: 10rem;
-}
-
-.kanji-box {
-  display: flex;
-  gap: 5rem;
-  margin-bottom: 2rem;
-}
-
-.kanji-box span {
+.kanji-container1 {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
 }
 
-.kanji-box span h3 {
-  font-size: 2rem;
+.kanji-box-grid {
+  display: grid;
+  grid-template-columns: auto auto;
+  background-color: #8B0000;
 }
-.kanji-box span p {
+
+
+
+.kanji-box1 {
+  text-align: center;
+}
+
+.kanji-box1 h1 {
+  font-size: 9rem;
+}
+
+.kanji-box1 h3 {
+  font-size: 2.4rem;
+  text-align: center;
+}
+
+.kanji-box1-part2 {
+  display: flex;
+  flex-direction: column;
+}
+
+.kanji-box1-part2 span {
+  text-align: center;
+}
+
+.smaller-text {
   font-size: 1.8rem;
+  text-align: center;
+  padding-top: 1rem;
 }
+
 
 .kanji-box2 {
-  text-align: center;
-  font-size: 1.6rem;
+  width: 100%;
+  margin-top: 1.4rem;
+  border-top: 2px solid #8b000028;
 }
 
-.kanji-box2 h3 {
-  padding: 0.5rem;
+.stroke-order-box {
+  padding: 1rem;
+  margin-top: 2rem;
 }
+
+
+
 
 .kanji-box3 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.2rem;
+  margin-right: 1.4rem;
 }
 
 .kanji-box3 h3 {
-  font-size: 1.8rem;
+  font-size: 2.4rem;
+  margin-bottom: 1.4rem;
 }
 
 .kanji-box3 ul {
   list-style: none;
-  font-size: 1.5rem;
-
+  font-size: 1.8rem;
+  width: 100%;
 }
 
-.kanji-box3 ul li {
-  margin-bottom: 0.7rem;
+.audio-li {
+  margin-bottom: 1.4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #8b000028;
+}
+
+.audio-text {
+  margin-bottom: 0.9rem;
 }
 
 .kanji-details-audio {
-  margin-bottom: 2rem;
+  width: 30%;
+  height: 3rem;
+  
+}
+
+.kanji-details-audio::-webkit-media-controls-panel {
+  background-color: #faf7f0;
 }
 
 .flashCard-details-link:link, .flashCard-details-link:active {

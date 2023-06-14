@@ -65,8 +65,10 @@
   <button><a href="/note/create-note/{{theFlashCard._id}}/{{theFlashCard.kanji}}">Add Note</a></button>
 </div>
 
+{{#if theFlashCard.notes.length}}
 <div>
   <button><a href="/note/see-notes/{{theFlashCard._id}}">Check Notes for this FlashCard</a></button>
   </div>
+  {{/if}}
 
 </div>
