@@ -1,19 +1,17 @@
-<form action="/flashCards/update-audio/{{theAudioText._id}}" method="POST" enctype="multipart/form-data">
+<form class="update-form-container margin-top" action="/flashCards/update-audio/{{theAudioText._id}}" method="POST" enctype="multipart/form-data">
 
 {{#each theAudioText.examples}}
-<div>
-<label>Enter usage example text</label>
+<div class="update-inpute-box">
+<label> Usage example text</label>
 <input type="text" name="theText[]" id="" value="{{this.text}}">
 </div>
 
-<br>
-
-<div>
-<label>Enter usage example audio (optional)</label>
-<input type="file" name="theAudio" id="" value="{{this.audio}}">
+<div class="stoke-order-file-container">
+<label>Usage example audio (optional)</label>
+<input class="file-upload-img" type="file" name="theAudio" value="{{this.audio}}">
 </div>
 {{/each}}
 
-<button type="submit">Save</button>
+<button class="btn btn-update" type="submit">Save</button>
 
 </form>

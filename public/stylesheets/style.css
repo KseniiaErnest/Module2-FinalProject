@@ -447,6 +447,7 @@ color: #000;
   box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
   background-color: #6f0000;
   color: #faf7f0;
+  text-transform: uppercase;
 }
 
 .btn a:link, .btn a:active {
@@ -805,4 +806,100 @@ h1 {
   color: #faf7f0;
 }
 
+/* Update Note Page */
+.update-note-flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
 
+.update-note-flex label {
+font-size: 2rem;
+font-weight: 700;
+}
+
+.update-note-flex input, .update-note-flex textarea  {
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 2rem;
+  padding: 0.7rem;
+  border-radius: 9px;
+  border: none;
+  box-shadow: rgba(190, 196, 201, 0.849) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.329) -3px -3px 6px 1px inset;
+}
+
+
+/* Update Flashcard page */
+
+.update-form-container {
+  background-color: #e8cccc;
+  padding: 2rem 1.4rem;
+  border-radius: 11px;
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5rem;
+  gap: 2rem;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.update-inpute-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.update-inpute-box:first-child {
+  margin-top: 1.5rem;
+} 
+
+.update-inpute-box label {
+  font-size: 2rem;
+}
+
+.update-inpute-box input {
+  font-size: 2rem;
+  padding: 0.7rem;
+  border-radius: 9px;
+  border: none;
+  box-shadow: rgba(190, 196, 201, 0.849) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.329) -3px -3px 6px 1px inset;
+}
+
+.file-upload-img {
+  box-shadow: none;
+  font-size: 1.6rem;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.no-shadow {
+  box-shadow: none;
+}
+
+.file-upload-img::-webkit-file-upload-button {
+  font-family: 'Noto Sans', sans-serif;
+  background-color: #e8cccc;
+  border: none;
+  cursor: pointer;
+  color: #8B0000;
+  font-weight: 900;
+}
+
+.stoke-order-file-container {
+  margin: 3rem 0;
+  display: flex;
+  gap: 2.5rem;
+  font-size: 2rem;
+  align-items: center;
+}
+
+.btn-update {
+  margin-bottom: 1.6rem;
+}
+
+.margin-top {
+  margin-top: 11rem;
+}

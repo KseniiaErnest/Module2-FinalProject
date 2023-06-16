@@ -1,83 +1,63 @@
 <h1>Update your FlashCard</h1>
 
-<br>
-<form action="/flashCards/update/{{theCard._id}}" method="POST" enctype="multipart/form-data">
-<div>
-<label>Enter kanji</label>
+
+<form class="update-form-container" action="/flashCards/update/{{theCard._id}}" method="POST" enctype="multipart/form-data">
+<div class="update-inpute-box">
+<label>Kanji</label>
 <input type="text" name="theKanji" id="" value="{{theCard.kanji}}">
 </div>
 
-<br> 
 
-<div>
-<label>Enter meaning in English</label>
+
+<div class="update-inpute-box">
+<label> Meaning in English</label>
 <input type="text" name="theMeaning" id="" value="{{theCard.meaning}}">
 </div>
 
-<br>
 
-<div>
-<label>Enter onyomi reading</label>
+
+<div  class="update-inpute-box">
+<label> Onyomi reading</label>
 <input type="text" name="theOnyomi" id="" value="{{theCard.onyomi}}">
 </div>
 
-<br>
 
-<div>
-<label>Enter kunyomi reading</label>
+
+<div  class="update-inpute-box">
+<label> Kunyomi reading</label>
 <input type="text" name="theKunyomi" id="" value="{{theCard.kunyomi}}">
 </div>
 
-<br>
 
-<div>
-<label>Enter number of strokes</label>
+
+<div  class="update-inpute-box">
+<label> Number of strokes</label>
 <input type="number" name="theStrokes" id="" value="{{theCard.strokes}}">
 </div>
 
-<br>
 
-<div>
-<label>Enter grade</label>
-<input type="text" name="theGrade" id="" value="{{theCard.grade}}">
+
+<div  class="update-inpute-box">
+<label> Grade</label>
+<input type="text" name="theGrade"  value="{{theCard.grade}}">
 </div>
 
-<br><br><br>
 
-{{!-- {{#each theCard.examples}}
-<div>
-<label>Enter usage example text</label>
-<input type="text" name="theText[]" id="" value="{{this.text}}">
-</div>
 
-<br>
-
-<div>
-<label>Enter usage example audio (optional)</label>
-<input type="file" name="theAudio[]" id="" >
-</div>
-{{/each}} --}}
-
-<br><br><br>
-
-<div>
-<label>Enter link to resources (for example, Kenkyusha Luminous Japanese-English Online Dictionary )</label>
+<div  class="update-inpute-box">
+<label> Link to resources </label>
 <input type="text" name="theLink" id="" value="{{theCard.link}}">
 </div>
 
-<br>
 
-<div>
-<label>Enter Stroke Order Image</label>
-<input type="file" name="theStrokeOrder" id="">
+<div  class="stoke-order-file-container">
+<label> Stroke Order Image</label>
+<input type="file" name="theStrokeOrder" class="file-upload-img">
 </div>
 
-<br>
-
-<button type="submit">Save Changes</button>
 
 
-
+<button class="btn btn-update" type="submit">Save changes</button>
 
 
 

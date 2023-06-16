@@ -1,15 +1,15 @@
-<h1>Update This Note</h1>
-<form action="/note/update-note/{{theNote._id}}" method="POST">
-  <div>
-    <label>Give a Title to a Note</label>
+<h1>Update this note</h1>
+<form class="update-form-container" action="/note/update-note/{{theNote._id}}" method="POST">
+  <div class="update-note-flex">
+    <label>Title to a Note</label>
     <input type="text" name="theTitle" id="" placeholder="Enter title" value="{{theNote.title}}">
   </div>
 
-    <div>
+    <div class="update-note-flex">
     <label>Content</label>
-    <input type="text" name="theContent" id="" placeholder="Enter content" value="{{theNote.content}}">
+    <textarea name="theContent" value="{{theNote.content}}"  cols="40" rows="5"></textarea>
   </div>
 
-  <button type="submit">Update</button>
+  <button class="btn btn-update" type="submit">Update</button>
 
   </form>
