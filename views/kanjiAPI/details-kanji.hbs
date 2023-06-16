@@ -57,8 +57,24 @@
 </div>
 
 
+{{#if theFlashC}}
+    <form action="/flashCards/delete/{{theFlashC._id}}" method="POST">
+      <button>Delete This FlashCard</button>
+    </form>
+
+    
+  {{/if}}
+
 
 {{#if theUserObject}}
+<div>
+  <button class="btn add-note"><a href="/note/create-note/{{theFlashC._id}}/{{resultDetails.kanji.character}}">Add note</a></button>
+</div>
+
+<div>
+  <button class="btn see-note"><a href="/note/see-notes/{{theFlashC._id}}">Check notes</a></button>
+  </div>
+{{#unless theFlashC}}
 <form class="btn-container" action="/flashCards/add-kanji" method="POST">
 <input type="text" name="kanji" value="{{resultDetails.kanji.character}}" hidden>
 <input type="text" name="meaning" value="{{resultDetails.kanji.meaning.english}}" hidden>
@@ -69,24 +85,13 @@
 <input type="text" name="link" value="{{resultDetails.luminous}}" hidden>
 <input type="text" name="userID" value="{{theUserObject._id}}" hidden>
 
+<button>Add</button>
 
-<button class="btn add-kanji">ADD THIS KANJI TO MY FLASH</button>
-
-<div>
-  <button class="btn add-note"><a href="/note/create-note/{{resultDetails._id}}/{{resultDetails.kanji.character}}">Add note</a></button>
-</div>
-
-<div>
-  <button class="btn see-note"><a href="/note/see-notes/{{resultDetails._id}}">Check notes</a></button>
-  </div>
-
-</form>
+  </form>
+  {{/unless}}
 {{/if}}
 
 </div>
-
-
-
 
 
 <div class="kanji-box3">

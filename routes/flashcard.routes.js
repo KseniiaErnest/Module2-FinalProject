@@ -187,8 +187,10 @@ const examples = textExamples.map((text) => ({
 
 // Delete FlashCard POST route
 router.post('/delete/:theID', isLoggedIn, (req, res, next) => {
+  console.log('HELLOOOOO!!!');
   FlashCard.findByIdAndRemove(req.params.theID)
   .then(() => {
+    console.log('AGAIN!!');
     req.flash('success', 'FlashCard was successfully deleted');
     res.redirect('/flashCards/all')
   })

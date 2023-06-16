@@ -3,6 +3,7 @@ const router = express.Router();
 
 const axios = require('axios');
 const isLoggedIn = require('../middleware/isLoggedIn');
+const FlashCard = require('../models/FlashCard.model');
 
 
 // HOME PAGE Route to display search bar and result
@@ -57,13 +58,19 @@ router.get('/:character/details', async (req, res, next) => {
       const audioMp3 = example.audio.mp3;
     });
     //-----------
+const currentUser = req.session.currentUser || null
+FlashCard.findOne({$and: [{kanji: req.params.character}, {createdBy: currentUser }]})
+.then((theFlashC) => {
+  console.log(theFlashC);
+  res.render('kanjiAPI/details-kanji', { resultDetails, examples, theFlashC, });
+})
+.catch((error) => {
+  next(error);
+});
 
-    res.render('kanjiAPI/details-kanji', { resultDetails, examples });
-  }catch (error) {
-      next(error);
-    }
-
-
+}catch (error) {
+  next(error);
+}
 });
 
 

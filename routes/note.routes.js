@@ -17,6 +17,7 @@ router.post('/create-note/:flashcardId/:character', /* isLoggedIn , */ (req, res
 
   const { theTitle, theContent } = req.body;
   const flashcardId = req.params.flashcardId;
+  console.log(flashcardId);
   const character = req.params.character;
 
   Note.create({
@@ -30,6 +31,7 @@ router.post('/create-note/:flashcardId/:character', /* isLoggedIn , */ (req, res
       $push: {notes: createdNote._id}
     })
     .then((flashC) => {
+      console.log(flashC);
       const redirectURL = flashC.createdByUser ? `/flashCards/details/${flashcardId}` : `/${character}/details`;
       req.flash('success', 'Note created successfully');
       res.redirect(redirectURL);

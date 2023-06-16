@@ -15,8 +15,6 @@ const hbs = require("hbs");
 
 const app = express();
 
-
-
 require('./config/session.config')(app);
 
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
@@ -35,7 +33,7 @@ app.use((req, res, next)=>{
   res.locals.successMessage = req.flash("success");
 
   next();
-})
+});
 
 
 // 👇 Start handling routes here
