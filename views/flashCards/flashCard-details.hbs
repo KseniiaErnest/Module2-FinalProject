@@ -39,15 +39,15 @@
 </div>
 
 <div class="btn-container">
-<a class="btn" href="/flashCards/edit/{{theFlashCard._id}}">Update this FlashCard</a>
+<button class="btn"><a href="/flashCards/edit/{{theFlashCard._id}}">Update this FlashCard</a></button>
 
 
 <form action="/flashCards/delete/{{theFlashCard._id}}" method="POST">
-<button class="btn" id="flashCard-delete-btn">Delete This FlashCard</button>
+<button class="btn">Delete This FlashCard</button>
 </form>
 
 <div>
-  <button class="btn"><a href="/note/create-note/{{theFlashCard._id}}/{{theFlashCard.kanji}}">Add Note</a></button>
+  <button class="btn"><a href="/note/create-note/{{theFlashCard._id}}/{{theFlashCard.kanji}}">Create Note</a></button>
 </div>
 
 {{#if theFlashCard.notes.length}}

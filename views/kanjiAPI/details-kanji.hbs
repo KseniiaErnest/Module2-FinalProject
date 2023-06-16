@@ -56,10 +56,10 @@
 
 </div>
 
-
+<div class="btn-container">
 {{#if theFlashC}}
     <form action="/flashCards/delete/{{theFlashC._id}}" method="POST">
-      <button>Delete This FlashCard</button>
+      <button class="btn">Delete This FlashCard</button>
     </form>
 
     
@@ -68,7 +68,7 @@
 
 {{#if theUserObject}}
 <div>
-  <button class="btn add-note"><a href="/note/create-note/{{theFlashC._id}}/{{resultDetails.kanji.character}}">Add note</a></button>
+  <button class="btn add-note"><a href="/note/create-note/{{theFlashC._id}}/{{resultDetails.kanji.character}}">Create note</a></button>
 </div>
 
 <div>
@@ -85,11 +85,12 @@
 <input type="text" name="link" value="{{resultDetails.luminous}}" hidden>
 <input type="text" name="userID" value="{{theUserObject._id}}" hidden>
 
-<button>Add</button>
+<button class="btn">Add this Kanji to my Flashcards</button>
 
   </form>
   {{/unless}}
 {{/if}}
+</div>
 
 </div>
 

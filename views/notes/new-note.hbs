@@ -1,17 +1,19 @@
-<div>
+<section class="position-center">
+
+<div class="create-note-container">
   <h1>Create a Note</h1>
-  <form action="/note/create-note/{{flashcardId}}/{{characterId}}" method="POST">
-  <div>
-    <label>Give a Title to a Note</label>
-    <input type="text" name="theTitle" id="" placeholder="Enter title">
-  </div>
+  <form class="create-note-form" action="/note/create-note/{{flashcardId}}/{{characterId}}" method="POST">
+  
+    <input type="text" name="theTitle" placeholder="Enter title">
+  
 
-    <div>
-    <label>Content</label>
-    <input type="text" name="theContent" id="" placeholder="Enter content">
-  </div>
+    
+    <textarea name="theContent" id="" cols="40" rows="5" placeholder="Enter content"></textarea>
+  
 
-  <button type="submit">Save note</button>
+  <button type="submit">Save</button>
 
   </form>
 </div>
+
+</section>
