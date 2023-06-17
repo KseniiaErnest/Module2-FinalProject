@@ -10,10 +10,22 @@ html {
 body {
   background-color: #faf7f0;
   font-family: 'Noto Sans', sans-serif;
+  /* margin-top: 11rem; */
+}
+
+.margin-top-body {
+  margin-top: 13rem;
 }
 
 
 /* Home Page */
+
+#header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
 
 .nav-bar {
   background-color: #8B0000 ;
@@ -177,9 +189,9 @@ color: #faf7f0;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 50%;
+  min-width: 100%;
+  min-height: 100vh;
   margin: 0 auto;
-  margin-top: 7rem;
   padding: 3rem 1rem;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 
@@ -196,7 +208,6 @@ color: #faf7f0;
   bottom: 0px;
   left: 0px;
   opacity: 0.7;
-  border-radius: 9px;
 }
 
 .signup-container h1 {
@@ -240,14 +251,16 @@ z-index: 10;
 }
 
 /* LOGIN container */
+
+
 .login-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 50%;
+  min-width: 100%;
+  min-height: 100vh;
   margin: 0 auto;
-  margin-top: 7rem;
   padding: 3rem 1rem;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   position: relative;
@@ -263,7 +276,6 @@ z-index: 10;
   bottom: 0px;
   left: 0px;
   opacity: 0.7;
-  border-radius: 9px;
 }
 
 .form-login {
@@ -291,13 +303,13 @@ z-index: 10;
   margin: 0 auto;
   padding: 2rem 1.5rem;
   gap: 2rem;
-  margin-top: 4rem;
   margin-bottom: 1.5rem;
 }
 
 .kanji-container1 {
   display: flex;
   flex-direction: column;
+
   
 }
 
@@ -373,6 +385,8 @@ z-index: 10;
   padding: 1.4rem;
   border-radius: 11px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+
+ 
 }
 
 
@@ -503,7 +517,7 @@ color: #000;
   justify-content: center;
   background-color: #e8cccc;
   max-width: 20rem;
-  padding: 1rem 2rem;
+  padding: 1rem 1.4rem;
   border-radius: 9px;
   box-shadow: 3px 3px 17px 5px rgb(0, 0, 0, 0.09);
 }
@@ -758,12 +772,13 @@ h1 {
 
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(25rem, 35rem));
+  
 }
 
 .each-note-container {
   /* max-width: 35rem; */
-  background-color: #e8cccc;
-  border-radius: 9px;
+  background-color: #e8cccc; 
+   border-radius: 9px; 
   padding: 0.9rem 2rem 1.1rem;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   margin-bottom: 3rem;
@@ -889,7 +904,7 @@ font-weight: 700;
 }
 
 .stoke-order-file-container {
-  margin: 3rem 0;
+  margin: 2rem 0;
   display: flex;
   gap: 2.5rem;
   font-size: 2rem;
@@ -902,4 +917,16 @@ font-weight: 700;
 
 .margin-top {
   margin-top: 11rem;
+}
+
+.uploadImglink:link, .uploadImglink:active {
+  text-decoration: none;
+  font-size: 1.8rem;
+  font-family: 'Noto Sans', sans-serif;
+  margin-top: 2.5rem;
+  color: #000;
+}
+
+.uploadImglink:hover, .uploadImglink:visited {
+  color: #000;
 }

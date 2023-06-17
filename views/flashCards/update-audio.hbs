@@ -1,3 +1,4 @@
+<section class="margin-top-body">
 <form class="update-form-container margin-top" action="/flashCards/update-audio/{{theAudioText._id}}" method="POST" enctype="multipart/form-data">
 
 {{#each theAudioText.examples}}
@@ -6,7 +7,8 @@
 <input type="text" name="theText[]" id="" value="{{this.text}}">
 </div>
 
-<div class="stoke-order-file-container">
+<a href="#" class="uploadImglink" id="uploadNewImg">Click Here to Upload a New Audio</a>
+<div id="imgInput"  class="stoke-order-file-container">
 <label>Usage example audio (optional)</label>
 <input class="file-upload-img" type="file" name="theAudio" value="{{this.audio}}">
 </div>
@@ -15,3 +17,8 @@
 <button class="btn btn-update" type="submit">Save</button>
 
 </form>
+
+
+<script src="/js/editImg.js"></script>
+
+</section>

@@ -15,41 +15,50 @@ router.get('/signup', (req, res, next) => {
 });
 
 router.post('/signup', (req, res, next) => {
+  const username = req.body.username;
+  const email = req.body.email;
+  const password = req.body.password;
 
-const username = req.body.username;
-const email = req.body.email;
-const password = req.body.password;
+  // All fields are mandatory
+  if (!username || !email || !password) {
+    res.render('users/signup', { errorMessage: "All fields are mandatory. Please provide your username, email, and password." });
+    return;
+  }
 
-// All fields are mandatory
-if (!username || !email || !password) {
-  res.render('users/signup', {errorMessage: "All fields are mandatory. Please provide your username, email and password."});
-  return;
-};
+  const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+  if (!regex.test(password)) {
+    req.flash('error', 'Password must contain lowercase, capital, numerals, and special characters');
+    res.redirect('/user/signup');
+    return;
+  }
 
-const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
-if (!regex.test(password)) {
-  req.flash('error', 'Password must contain lowercase, capital, numerals, and special characters');
-  res.redirect('/user/signup');
-  return;
-};
-
-
-bcryptjs
-    .genSalt(saltRounds)
-    .then(salt => bcryptjs.hash(password, salt))
-    .then(hashedPassword => {
-      /*return*/ User.create({ username, email, password: hashedPassword });
+  // Check if the username or email already exists in the database
+  User.findOne({ $or: [{ username: username }, { email: email }] })
+    .then((existingUser) => {
+      if (existingUser) {
+        req.flash('error', 'Username or email already exists. Please choose a different username or email.');
+        res.redirect('/user/signup');
+      } else {
+        bcryptjs.genSalt(saltRounds)
+          .then((salt) => bcryptjs.hash(password, salt))
+          .then((hashedPassword) => {
+            return User.create({ username, email, password: hashedPassword });
+          })
+          .then(() => {
+            req.flash("success", "Sign-up was successful");
+            res.redirect('/user/login');
+          })
+          .catch((error) => {
+            if (error instanceof mongoose.Error) {
+              req.flash("error", error.message);
+              res.redirect('/user/signup');
+            }
+          });
+      }
     })
-    .then(() => {
-      req.flash("success", "Sign-up was successful");
-      res.redirect('/user/userprofile');
-    })
-    .catch((error)  => {
-if (error instanceof mongoose.Error) {
-  req.flash("error", error.message);
-  res.redirect('/signup');
-}
-    })
+    .catch((error) => {
+      next(error);
+    });
 });
 
 // LOGIN GET route
@@ -83,7 +92,7 @@ router.post('/login', (req, res, next) => {
       //Save the user in session
       req.session.currentUser = gotUser;
       req.flash('success', 'Successfully Logged In');
-      res.redirect('/user/userprofile');
+      res.redirect('/');
     } else {
       req.flash('error', "Password do not match");
       res.redirect('/user/login');
