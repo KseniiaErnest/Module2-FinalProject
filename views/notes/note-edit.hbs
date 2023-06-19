@@ -1,3 +1,4 @@
+<section class="margin-top-body">
 <h1>Update this note</h1>
 <form class="update-form-container" action="/note/update-note/{{theNote._id}}" method="POST">
   <div class="update-note-flex">
@@ -7,9 +8,11 @@
 
     <div class="update-note-flex">
     <label>Content</label>
-    <textarea name="theContent" value="{{theNote.content}}"  cols="40" rows="5"></textarea>
+    <textarea name="theContent"  cols="40" rows="5">{{theNote.content}}</textarea>
   </div>
 
   <button class="btn btn-update" type="submit">Update</button>
 
   </form>
+
+  </section>

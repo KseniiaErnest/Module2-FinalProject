@@ -7,10 +7,9 @@
 <input type="text" name="theText[]" id="" value="{{this.text}}">
 </div>
 
-<a href="#" class="uploadImglink" id="uploadNewImg">Click Here to Upload a New Audio</a>
-<div id="imgInput"  class="stoke-order-file-container">
-<label>Usage example audio (optional)</label>
-<input class="file-upload-img" type="file" name="theAudio" value="{{this.audio}}">
+<a href="#" id="upload-audio-link" class="uploadImglink">Click Here to Upload a New Audio</a>
+<div class="stoke-order-file-container" >
+<input id="upload-new-audio" class="file-upload-img" type="file" name="theAudio" value="{{this.audio}}">
 </div>
 {{/each}}
 
@@ -19,6 +18,6 @@
 </form>
 
 
-<script src="/js/editImg.js"></script>
+<script src="/js/editAudio.js"></script>
 
 </section>

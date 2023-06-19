@@ -13,12 +13,14 @@ addExampleBtn.addEventListener('click', () => {
     input.value = '';
   });
 
-  // Hide the "Upload file" input for the cloned field
-  // const fileInput = exampleField.querySelector('input[type="file"]');
-  // fileInput.style.display = 'none';
 
-  // const uploadAudioText = exampleField.querySelector('#hide-upload-function');
-  // uploadAudioText.style.display = 'none';
+  // Hide the "Upload file" input for the cloned field
+  const fileInput = exampleField.querySelector('input[type="file"]');
+  fileInput.style.display = 'none';
+
+  // Hide the "Upload audio" text for the cloned field
+  const uploadAudioText = exampleField.querySelector('.hide-upload-function');
+  uploadAudioText.style.display = 'none';
 
   // To append the cloned field to the example fields container
   exampleFieldsContainer.appendChild(exampleField);

@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-  document.querySelector('#imgInput').style.visibility = 'hidden';
+  document.querySelector('.imgInput').style.visibility = 'hidden';
   
-  document.querySelector('#uploadNewImg').onclick = function(e) {
+  document.querySelector('.uploadNewImg').onclick = function(e) {
     e.preventDefault();
 
-    document.querySelector('#imgInput').style.visibility = 'visible';
+    document.querySelector('.imgInput').style.visibility = 'visible';
     e.currentTarget.style.visibility = 'hidden';
   }
 });

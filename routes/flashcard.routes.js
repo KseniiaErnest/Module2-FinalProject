@@ -187,13 +187,35 @@ router.get('/edit-audio/:id', /* isLoggedIn, */  (req, res, next) => {
  })
 });
 
+// router.post('/update-audio/:theID', /* isLoggedIn, */ uploader2.single('theAudio'), (req, res, next) => {
+//   const textExamples = req.body.theText;
+//   const audioExample = req.file ? req.file.path : null;
+
+// const examples = textExamples.map((text) => ({
+//   text: text,
+//   audio: audioExample
+// }));
+
+
+//   FlashCard.findByIdAndUpdate(req.params.theID, {
+//     examples: examples
+//   }) 
+//   .then(() => {
+//     req.flash('success', 'Your FlashCard was updated successfully');
+//     res.redirect('/flashCards/details/'+req.params.theID);
+//   })
+//   .catch((error) => {
+//     next(error);
+//   })
+// });
+
 router.post('/update-audio/:theID', /* isLoggedIn, */ uploader2.single('theAudio'), (req, res, next) => {
   const textExamples = req.body.theText;
   const audioExample = req.file ? req.file.path : null;
 
-const examples = textExamples.map((text) => ({
+const examples = textExamples.map((text, index) => ({
   text: text,
-  audio: audioExample
+  audio: index === 0 ? audioExample : null
 }));
 
 
@@ -208,6 +230,7 @@ const examples = textExamples.map((text) => ({
     next(error);
   })
 });
+
 
 
 // Delete FlashCard POST route
