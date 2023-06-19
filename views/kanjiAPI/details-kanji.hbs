@@ -59,13 +59,12 @@
 </div>
 
 <div class="btn-container">
-{{#if theFlashC}}
+
+{{!-- {{#if theFlashC}}
     <form action="/flashCards/delete/{{theFlashC._id}}" method="POST">
       <button class="btn">Delete This FlashCard</button>
-    </form>
-
-    
-  {{/if}}
+    </form> 
+  {{/if}} --}}
 
 
 {{#if theUserObject}}
@@ -92,6 +91,13 @@
   </form>
   {{/unless}}
 {{/if}}
+
+{{#if theFlashC}}
+    <form action="/flashCards/delete/{{theFlashC._id}}" method="POST">
+      <button class="btn">Delete This FlashCard</button>
+    </form> 
+  {{/if}}
+  
 </div>
 
 </div>

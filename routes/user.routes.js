@@ -109,9 +109,9 @@ res.redirect('/');
 });
 
 // User profile page GET route
-router.get('/userprofile', (req, res, next) => {
-  res.render('users/user-profile');
-})
+// router.get('/userprofile', (req, res, next) => {
+//   res.render('users/user-profile');
+// })
 
 
 // User flashCard page

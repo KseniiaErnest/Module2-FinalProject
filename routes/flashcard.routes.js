@@ -146,7 +146,7 @@ router.post('/add-audio/:theID', isLoggedIn, uploader2.single('theAudio'), (req,
 
 // Update FlashCard GET and POST route
 
-router.get('/edit/:id', /* isLoggedIn */ (req, res, next) => {
+router.get('/edit/:id',isLoggedIn, (req, res, next) => {
   FlashCard.findById(req.params.id)
   .then((theCard) => {
     res.render('flashCards/update-flashCard', { theCard });
@@ -156,7 +156,7 @@ router.get('/edit/:id', /* isLoggedIn */ (req, res, next) => {
   })
 });
 
-router.post('/update/:theID', /* isLoggedIn */ uploader1.single('theStrokeOrder'), (req, res, next) => {
+router.post('/update/:theID',isLoggedIn, uploader1.single('theStrokeOrder'), (req, res, next) => {
   let theUpdate = {
   kanji: req.body.theKanji,
   meaning: req.body.theMeaning,
@@ -177,7 +177,7 @@ router.post('/update/:theID', /* isLoggedIn */ uploader1.single('theStrokeOrder'
   })
 });
 
-router.get('/edit-audio/:id', /* isLoggedIn, */  (req, res, next) => {
+router.get('/edit-audio/:id',isLoggedIn, (req, res, next) => {
   FlashCard.findById(req.params.id)
    .then((theAudioText) => {
     res.render('flashCards/update-audio', { theAudioText: theAudioText });
@@ -209,7 +209,7 @@ router.get('/edit-audio/:id', /* isLoggedIn, */  (req, res, next) => {
 //   })
 // });
 
-router.post('/update-audio/:theID', /* isLoggedIn, */ uploader2.single('theAudio'), (req, res, next) => {
+router.post('/update-audio/:theID', isLoggedIn, uploader2.single('theAudio'), (req, res, next) => {
   const textExamples = req.body.theText;
   const audioExample = req.file ? req.file.path : null;
 
