@@ -1,0 +1,11 @@
+/* Log in Screen */
+@media screen and (max-width: 32em) {
+  .form-login {
+    width: 80%;
+  }
+
+  .login-container h1 {
+    font-size: 3rem;
+    background-color: aqua;
+  }
+}

@@ -85,6 +85,7 @@ color: #000;
   margin-top: 3rem;
   margin-bottom: 4rem;
   font-size: 5rem;
+  padding: 0 2rem;
 
 }
 
@@ -95,7 +96,7 @@ color: #000;
   max-height: 70rem;
   gap: 3rem;
 
-  width: 50%;
+  width: 60%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -121,9 +122,10 @@ margin-top: 1.8rem;
   display: flex;
   justify-content: center;
   gap: 3rem;
+  padding: 0 3rem;
 }
 .homepage-search-container form input {
-  width: 50%;
+  width: 50rem;
   padding: 1rem;
   font-size: 2rem;
   border-radius: 0.5rem;
@@ -150,11 +152,11 @@ margin-top: 1.8rem;
   display: flex;
   flex-wrap: wrap;
   gap: 3rem;
-  padding: 1rem;
+  padding: 1rem 2rem;
 }
 
 
-.homepage-search-container ul li, .homepage-search-container ul li {
+.homepage-search-container ul li {
   list-style: none;
   font-size: 5.4rem;
   margin-bottom: 1.8rem;
@@ -434,6 +436,7 @@ z-index: 10;
 
 .audio-text {
   margin-bottom: 0.9rem;
+  line-height: 1.5;
 }
 
 .kanji-details-audio {
@@ -505,6 +508,7 @@ color: #000;
   align-items: center;
   margin-top: 5rem;
   margin-bottom: 2rem;
+  padding: 0 2rem;
 }
 
 .all-myFlashCard-container h1 {
@@ -960,4 +964,103 @@ font-weight: 700;
 
 #upload-new-audio {
   visibility: hidden;
+}
+
+
+@media screen and (max-width: 90em) {
+  .audio-li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .kanji-details-audio {
+    width: 70%;
+    margin-bottom: 1rem;
+  }
+}
+
+
+@media screen and (max-width: 60em) {
+  /* Search Container/Page */
+
+  .homepage-search-container {
+    width: 80%;
+    margin-bottom: 3rem;
+  }
+
+  .homepage-search-container form {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .homepage-search-container form input {
+width: 90%;
+  }
+
+  .homepage-search-container form button {
+    width: 90%;
+    text-transform: uppercase;
+  }
+
+  .homepage-heading {
+    font-size: 4rem;
+  }
+
+  /* Kanji/Flashcard Details Page/Screen */
+  .kanji-details-bigContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    
+  
+ 
+  }
+}
+
+
+@media screen and (max-width: 35em) {
+  /* Navbar */
+  .nav-bar {
+    font-size: 1.8rem;
+  }
+
+
+  /* Log in and Sing up Screens */
+  .login-container h1 {
+    font-size: 3.5rem;
+
+  }
+
+  .input-signup {
+    width: 30rem;
+    font-size: 1.8rem;
+  }
+
+   /* Search Container/Page */
+  .homepage-search-container ul li {
+    font-size: 4rem;
+  }
+
+  .homepage-heading {
+    font-size: 3rem;
+  }
+
+  .homepage-search-container h2:first-child {
+    margin-top: 2rem;
+    }
+
+    .homepage-search-container h2 {
+      font-size: 2.4rem;
+    }
+
+    /* Kanji/FlashCards details container/page */
+    .btn-container {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .add-note, .see-note {
+      width: 23rem;
+    }
 }
