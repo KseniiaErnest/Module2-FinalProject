@@ -14,49 +14,63 @@
    </head>
 
    <body>
-<header id="header">
-      <nav class="nav-bar">
+<header class="header">
 
+   <div class="icon-welcome-container">
 
-         {{#if theUserObject}}
-         <a href="/user/signup" style="display:none">Sign up</a>
-         {{else}}
-         <a href="/user/signup">Sign up</a>
+   <img src="/images/icons-kanji.png" alt="Kanji icon">
+
+   {{#if theUserObject}}
+         <h2>よこそ、{{theUserObject.username}}</h2>
          {{/if}}
 
+   </div>
 
+         <nav class="main-nav">
+
+         <ul class="main-nav-list">
+
+            <li><a class="main-nav-link" href="/">Homepage</a></li>
+            <li>
+               {{#if theUserObject}}
+         <a class="main-nav-link"  href="/flashCards/all">My FlashCards</a>
+         {{/if}}
+            </li>
+
+            <li>
+               {{#if theUserObject}}
+          <a class="main-nav-link"  href="/flashCards/create-flashCard">Create a FlashCard</a>
+         {{/if}}
+
+            </li>
+
+         <li>
          {{#if theUserObject}}
+         <a class="main-nav-link"  href="/user/signup" style="display:none">Sign up</a>
+         {{else}}
+         <a class="main-nav-link"  href="/user/signup">Sign up</a>
+         {{/if}}
+           </li>
+
+           <li>
+            {{#if theUserObject}}
          <form action="/user/logout" method="POST" class="logout-container">
             <button>Log out</button>
          </form>
          {{else}}
-          <a href="/user/login">Log in</a>
+          <a class="main-nav-link"  href="/user/login">Log in</a>
          {{/if}}
 
-         <a href="/">Homepage</a>
-         
-<div class="navigation-box">
-      
+           </li>
+         </ul>
 
+         </nav>
 
-  {{#if theUserObject}}
-         <a href="/flashCards/all">My FlashCards</a>
-         {{/if}}
-           {{#if theUserObject}}
-          <a href="/flashCards/create-flashCard">Create a FlashCard</a>
-         {{/if}}
-        
-           {{!-- {{#if theUserObject}}
-         <a href="/user/userprofile">Profile</a>
-         {{/if}} --}}
+         <button class="btn-mobile-nav">
+  <img class="icon-mobile-nav open-menu" src="/images/icons8-menu-64.png" alt="Menu icon">
+  <img class="icon-mobile-nav close-menu" src="/images/icons8-close-60.png" alt="Menu close icon">
+</button>
 
- {{#if theUserObject}}
-         <h2>よこそ、{{theUserObject.username}}</h2>
-         {{/if}}
-
-         </div>
-
-      </nav>
       </header>
 
      
