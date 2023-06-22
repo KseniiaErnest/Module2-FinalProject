@@ -19,32 +19,29 @@
 
 
 // Mobile navigation
-document.addEventListener('DOMContentLoaded', function(e) {
-  e.preventDefault();
+document.addEventListener('DOMContentLoaded', function() {
   const btnNav = document.querySelector('.btn-mobile-nav');
   const header = document.querySelector('.header');
   
   btnNav.addEventListener('click', function() {
     header.classList.toggle('nav-open');
+    
   });
 });
 
 
 // Sticky 
 
-const section = document.querySelector('.margin-top-body');
-const navbar = document.querySelector('.header');
-const obs = new IntersectionObserver(function(entries){
-  const ent = entries[0];
+window.addEventListener('scroll', () => {
+  const header = document.querySelector('.header');
+  const scrollPosition = window.pageYOffset;
 
-  if (ent.isIntersecting === false) {
-    navbar.classList.remove('sticky');
+  if (scrollPosition > 0) {
+    header.classList.add('sticky');
+    document.body.classList.add('scroll');
   } else {
-    navbar.classList.add('sticky');
+    header.classList.remove('sticky');
+    document.body.classList.remove('scroll');
   }
-}, {
-  root: null,
-  threshold: 0,
-  rootMargin: '-80px',
-})
-obs.observe(section);
+});
+

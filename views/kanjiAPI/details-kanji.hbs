@@ -60,14 +60,10 @@
 
 <div class="btn-container">
 
-{{!-- {{#if theFlashC}}
-    <form action="/flashCards/delete/{{theFlashC._id}}" method="POST">
-      <button class="btn">Delete This FlashCard</button>
-    </form> 
-  {{/if}} --}}
-
-
 {{#if theUserObject}}
+
+{{#if theFlashC}}
+
 <div>
   <button class="btn add-note"><a href="/note/create-note/{{theFlashC._id}}/{{resultDetails.kanji.character}}">Create note</a></button>
 </div>
@@ -75,6 +71,9 @@
 <div>
   <button class="btn see-note"><a href="/note/see-notes/{{theFlashC._id}}">Check notes</a></button>
   </div>
+
+{{/if}}
+
 {{#unless theFlashC}}
 <form class="btn-container" action="/flashCards/add-kanji" method="POST">
 <input type="text" name="kanji" value="{{resultDetails.kanji.character}}" hidden>

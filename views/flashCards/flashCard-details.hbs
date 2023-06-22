@@ -48,12 +48,12 @@
 </form>
 
 <div>
-  <button class="btn"><a href="/note/create-note/{{theFlashCard._id}}/{{theFlashCard.kanji}}">Create Note</a></button>
+  <button class="btn add-note"><a href="/note/create-note/{{theFlashCard._id}}/{{theFlashCard.kanji}}">Create Note</a></button>
 </div>
 
 {{#if theFlashCard.notes.length}}
 <div>
-  <button class="btn"><a href="/note/see-notes/{{theFlashCard._id}}">Check Notes</a></button>
+  <button class="btn see-note"><a href="/note/see-notes/{{theFlashCard._id}}">Check Notes</a></button>
   </div>
   {{/if}}
       </div>
