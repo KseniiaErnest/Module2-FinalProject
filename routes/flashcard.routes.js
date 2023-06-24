@@ -91,31 +91,6 @@ router.get('/add-audio/:id', isLoggedIn, (req, res, next) => {
  })
 });
 
-// router.post('/add-audio/:theID',  isLoggedIn, uploader2.single('theAudio'), (req, res, next) => {
-//   let examples = [];
-//   const exampleTexts = req.body.theText;
-//   const exampleAudios = req.file ? req.file.path : null;
-
-//   for (let i = 0; i < exampleTexts.length; i++) {
-//     const example = {
-//       text: exampleTexts[i],
-//       audio: exampleAudios
-//     };
-//     examples.push(example);
-//   }
-
-//   FlashCard.findByIdAndUpdate(req.params.theID, {
-//     examples: examples
-//   })
-//   .then(() => {
-//      req.flash('success', 'Your FlashCard was created successfully');
-//      res.redirect('/flashCards/all');
-//      })
-//     .catch((error) => {
-//       next(error);
-//      })
-    
-// });
 
 router.post('/add-audio/:theID', isLoggedIn, uploader2.single('theAudio'), (req, res, next) => {
   const exampleTexts = req.body.theText;
@@ -187,27 +162,7 @@ router.get('/edit-audio/:id',isLoggedIn, (req, res, next) => {
  })
 });
 
-// router.post('/update-audio/:theID', /* isLoggedIn, */ uploader2.single('theAudio'), (req, res, next) => {
-//   const textExamples = req.body.theText;
-//   const audioExample = req.file ? req.file.path : null;
 
-// const examples = textExamples.map((text) => ({
-//   text: text,
-//   audio: audioExample
-// }));
-
-
-//   FlashCard.findByIdAndUpdate(req.params.theID, {
-//     examples: examples
-//   }) 
-//   .then(() => {
-//     req.flash('success', 'Your FlashCard was updated successfully');
-//     res.redirect('/flashCards/details/'+req.params.theID);
-//   })
-//   .catch((error) => {
-//     next(error);
-//   })
-// });
 
 router.post('/update-audio/:theID', isLoggedIn, uploader2.single('theAudio'), (req, res, next) => {
   const textExamples = req.body.theText;
